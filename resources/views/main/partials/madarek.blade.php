@@ -1,8 +1,8 @@
-<div class="custom-card card text-center">
+<div class="custom-card card text-center ">
     <div class="card-header">سررسید ها</div>
     <div class="card-body">
-        <div class="table-responsive custom-table">
-            <table class="table  table-hover ">
+        <div class="table-responsive custom-table ">
+            <table class="table  table-hover">
                 <thead class="align-middle  table-secondary">
                     <tr>
                         <th>اتاق</th>

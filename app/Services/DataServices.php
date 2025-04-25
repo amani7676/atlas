@@ -11,23 +11,24 @@ class DataServices
         $vaheds = Vahed::with([
             'otaghs.takhts.resident.infoResident'
         ])->get();
-        
+
         $data = [];
-        
+
         foreach ($vaheds as $vahed) {
             $vahedData = [
                 'vahed_id' => $vahed->id,
                 'vahed_name' => $vahed->name,
                 'otaghs' => [],
             ];
-        
+
             foreach ($vahed->otaghs as $otagh) {
                 $otaghData = [
                     'otagh_id' => $otagh->id,
                     'otagh_name' => $otagh->name,
+                    'otagh_vahedID' => $otagh->vahed_id,
                     'takhts' => [],
                 ];
-        
+
                 foreach ($otagh->takhts as $takht) {
                     $takhtData = [
                         'takht_id' => $takht->id,
@@ -35,11 +36,11 @@ class DataServices
                         'state' => $takht->state,
                         'resident' => null,
                     ];
-        
+
                     if ($takht->resident) {
                         $resident = $takht->resident;
                         $info = $resident->infoResident;
-        
+
                         $takhtData['resident'] = [
                             'resident_id' => $resident->id,
                             'full_name' => $resident->full_name,
@@ -63,14 +64,45 @@ class DataServices
                             ] : null
                         ];
                     }
-        
+
                     $otaghData['takhts'][] = $takhtData;
                 }
-        
+
                 $vahedData['otaghs'][] = $otaghData;
             }
-        
+
             $data[] = $vahedData;
         }
+        return $data;
+    }
+
+    public function getResidents($data)
+    {
+        $residents = [];
+
+        foreach ($data as $vahed) {
+            foreach ($vahed['otaghs'] as $otagh) {
+                foreach ($otagh['takhts'] as $takht) {
+                    if (!empty($takht['resident'])) {
+                        $resident = $takht['resident'];
+                        $flattened = [
+                            'resident_id' => $resident['resident_id'],
+                            'full_name' => $resident['full_name'],
+                            'phone' => $resident['phone'],
+                            'start_date' => $resident['start_date'],
+                            'end_date' => $resident['end_date'],
+                        ];
+
+                        if (!empty($resident['info'])) {
+                            $flattened = array_merge($flattened, $resident['info']);
+                        }
+
+                        $residents[] = $flattened;
+                    }
+                }
+            }
+        }
+
+        return $residents;
     }
 }

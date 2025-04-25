@@ -16,16 +16,16 @@
         <div class="ms-auto">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">صفحه اصلی</a>
+                    <a class="nav-link" href="{{ route('main')}}">صفحه اصلی</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">درباره ما</a>
+                    <a class="nav-link" href="">درباره ما</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">تماس با ما</a>
+                    <a class="nav-link" href="{{ route('list')}}">لیست اقامتگران</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">مقالات</a>
+                    <a class="nav-link" href="{{ route('main')}}">صفحه اصلی</a>
                 </li>
             </ul>
         </div>

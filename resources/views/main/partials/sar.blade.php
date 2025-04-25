@@ -1,9 +1,9 @@
-<div class="custom-card card text-center">
-    <div class="card-header">سررسید ها</div>
+<div class="custom-card card text-center" >
+    <div class="card-header" id="sar_header">سررسید ها</div>
     <div class="card-body">
         <div class="table-responsive custom-table">
             <table class="table  table-hover ">
-                <thead class="align-middle  table-secondary">
+                <thead class="align-middle  table-secondary" id="sar_header_thead">
                     <tr>
                         <th>اتاق</th>
                         <th>نام</th>

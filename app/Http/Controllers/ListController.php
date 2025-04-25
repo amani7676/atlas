@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\DataService;
+use App\Services\DataServices;
 use Illuminate\Http\Request;
 
 class ListController extends Controller
 {
-    // protected $DataService;
-    // public function __construct(DataService $dataService)
-    // {
-    //     $this->DataService = $dataService;
-    // }
-    // public function index()
-    // {
-    //     $result = $this->DataService->getVahedWithResidents();
-    //     $residents = $this->DataService->getResidentsFromVahedData($result);
-    //     return view("pages/list/mainlist",  data: ['data' => $result, 'residents' => $residents]);
-    // }
+
+    protected $dataAll;
+    public function __construct(DataServices $dataService)
+    {
+        $this->dataAll = $dataService;
+    }
+    public function index()
+    {
+        $result = $this->dataAll->getAllData();
+        $residents = $this->dataAll->getResidents($result);
+        return view("list/list",  data: ['data' => $result, 'residents' => $residents]);
+    }
 }

@@ -1,3 +1,9 @@
+div#sar_header {
+    background-color: #EC7FA9;
+}
+thead#sar_header_thead > tr > th {
+    background-color: #FFB8E0 !important;
+}
 .search-bar {
     max-width: 500px;
     margin: auto auto;
@@ -48,7 +54,7 @@
 }
 
 .custom-card {
-        margin: 15px;
+        margin: 5px;
         border: 1px solid #ddd;
     border-radius: 10px;
     transition: all 0.3s ease;
@@ -90,22 +96,22 @@
 
 }
 
-.table thead {
+.table1 thead {
     background: linear-gradient(45deg, #6c5ce7, #a363d9);
     color: white;
 }
 
-.table thead th {
+.table1 thead th {
     border-bottom: none;
     padding: 1rem;
     font-weight: 600;
 }
 
-.table tbody tr {
+.table1 tbody tr {
     transition: all 0.2s ease;
 }
 
-.table tbody tr:hover {
+.table1 tbody tr:hover {
     background-color: #f8f9fa;
     transform: translateX(5px);
 }
