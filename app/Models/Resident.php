@@ -21,4 +21,9 @@ class Resident extends Model
     public function patoBalesh() {
         return $this->hasOne(PatoBalesh::class);
     }
+
+    public function descriptions()
+    {
+        return $this->hasMany(Description::class);
+    }
 }

@@ -1,3 +1,10 @@
+body {
+    font-family: 'Vazir', sans-serif;
+}
+div.card-header {
+    font-size: 24px ;
+    font-weight: 900;
+}
 div#sar_header {
     background-color: #EC7FA9;
 }

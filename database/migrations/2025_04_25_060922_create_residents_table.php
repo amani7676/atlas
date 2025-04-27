@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('takht_id')->nullable();
             $table->foreignId('otagh_id')->nullable()->constrained('otaghs')->onDelete('cascade');
             $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
+            $table->string('end_date');
             $table->timestamps();
         });
     }

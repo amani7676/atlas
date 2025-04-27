@@ -1,5 +1,5 @@
 <div class="custom-card card text-center">
-    <div class="card-header">سررسید ها</div>
+    <div class="card-header">توضیحات</div>
     <div class="card-body">
         <div class="table-responsive custom-table">
             <table class="table  table-hover ">
@@ -15,47 +15,44 @@
                     </tr>
                 </thead>
                 <tbody class="align-middle">
-                    <tr>
-                        <td>101</td>
-                        <td>علی محمدی</td>
-                        <td>0912 345 6789</td>
-                        <td>1403/05/15</td>
-                        <td class="text-danger">-۲,۵۰۰,۰۰۰ تومان</td>
-                        <td>پرداخت معوقه</td>
-                        <td>
-                            <a href="#" class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
-                                    <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471z"/>
-                                  </svg>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>205</td>
-                        <td>فاطمه کریمی</td>
-                        <td>0935 678 9012</td>
-                        <td>1403/05/20</td>
-                        <td class="text-success">+۱,۲۰۰,۰۰۰ تومان</td>
-                        <td>پیش پرداخت</td>
-                        <td>
-                            <a href="#" class="btn btn-custom btn-sm">
-                                جزئیات
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>310</td>
-                        <td>رضا احمدی</td>
-                        <td>0901 234 5678</td>
-                        <td>1403/05/25</td>
-                        <td class="text-danger">-۱,۸۰۰,۰۰۰ تومان</td>
-                        <td>تاخیر در پرداخت</td>
-                        <td>
-                            <a href="#" class="btn btn-custom btn-sm">
-                                جزئیات
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach ($residents as $resident)
+                        @php
+                            $bedheyDescriptions = [];
+                            foreach ($resident['descriptions'] as $description) {
+                                if ($description['type'] == 'other') {
+                                    $bedheyDescriptions[] = $description['desc'];
+                                }
+                            }
+                        @endphp
+                        @if ($resident['madrak'] == '0')
+                            <tr>
+                                <td>{{ $resident['otagh_name'] }}</td>
+                                <td>{{ $resident['full_name'] }}</td>
+                                <td>{{ $resident['phone'] }}</td>
+                                <td>{{ $resident['end_date'] }}</td>
+                                <td>
+                                    @foreach ($bedheyDescriptions as $desc)
+                                        <span
+                                            style="display: inline-block; background: #eef; padding: 4px 8px; margin: 2px; border-radius: 6px;">
+                                            {{ $desc }}
+                                        </span>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <a href="#" class="text-success">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                            fill="currentColor" class="bi bi-credit-card-2-front-fill"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+
+
                 </tbody>
             </table>
         </div>
