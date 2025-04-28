@@ -9,16 +9,20 @@ class Resident extends Model
 {
     use HasFactory;
     protected $dates = ['deleted_at']; // (اختیاری) برای Laravel 5.x
- 
-    public function infoResident() {
+    // app/Models/Post.php
+    protected $fillable = ['full_name', 'phone', 'end_date'];
+    public function infoResident()
+    {
         return $this->hasOne(InfoResident::class);
     }
 
-    public function takht() {
+    public function takht()
+    {
         return $this->belongsTo(Takht::class);
     }
 
-    public function patoBalesh() {
+    public function patoBalesh()
+    {
         return $this->hasOne(PatoBalesh::class);
     }
 

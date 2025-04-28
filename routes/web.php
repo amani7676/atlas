@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ResidentController;
 use App\Models\Vahed;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
@@ -19,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index'])->name('main');
 Route::get('/list', [ListController::class, 'index'])->name('list');
+
+// اپدیت فوری اقامتگر
+Route::put('/residents/updateQuick/{resident}', [ResidentController::class, 'updateQuick'])->name('residents.updateQuick');
+Route::put('/residents/update-all/{resident}', [ResidentController::class, 'updateAll'])->name('residents.updateAll');

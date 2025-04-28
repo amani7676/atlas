@@ -67,14 +67,17 @@ class DataServices
                     if ($takht->resident) {
                         $resident = $takht->resident;
                         $info = $resident->infoResident;
+                        $description = $this->getDescription($resident->id);
+
                         $takhtData['resident'] = [
                             'resident_id' => $resident->id,
                             'full_name' => $resident->full_name,
                             'phone' => $resident->phone,
                             'start_date' => $resident->start_date,
                             'end_date' => $resident->end_date,
+                            'descriptions' => $description,
+                            'sarrsed' => $this->getDaysDiffJalali($resident->end_date),
                             'info' => $info ? [
-                                'description' => $info->description,
                                 'vadeh' => $info->vadeh,
                                 'ejareh' => $info->ejareh,
                                 'madrak' => $info->madrak,

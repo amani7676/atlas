@@ -2,6 +2,7 @@
 
 @section('title', 'لیست')
 
+
 @section('body')
     @foreach ($data as $vaheds)
         <div class="card m-3 text-center">
@@ -31,3 +32,7 @@
 
 
 @endsection
+
+@include('list.components.update-collapse')
+@include('list.components.js.update-all-js')
+@include('list.components.js.updateQuick')

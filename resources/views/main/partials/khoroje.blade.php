@@ -32,8 +32,10 @@
                                 <td>{{ $resident['full_name'] }}</td>
                                 <td>{{ $resident['phone'] }}</td>
                                 <td>{{ $resident['end_date'] }}</td>
-                                <td><span
-                                        class="badge text-bg-{{\App\Helpers\Helper::getSarrsedStatus($resident['sarrsed'])}}">{{ $resident['sarrsed'] }}</span>
+                                <td>
+                                    <span
+                                        class="badge text-bg-{{\App\Helpers\Helper::getSarrsedStatus($resident['sarrsed'])}}">{{ $resident['sarrsed'] }}
+                                    </span>
                                 </td>
                                 <td>
                                     @foreach ($bedheyDescriptions as $desc)
