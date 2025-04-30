@@ -80,8 +80,69 @@ thead#sar_header_thead > tr > th {
     color: #666;
     line-height: 1.6;
 }
-
-
+/* استایل‌های مدال */
+.modal-desc {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+  }
+  
+  /* ایجاد وسط‌چین کردن برای مدال */
+  .modal-content-desc {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    border-radius: 10px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); /* وسط‌چین عمودی */
+  }
+  
+  /* استایل‌های هدر و فوتر */
+  .modal-header-desc, .modal-footer-desc {
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  .modal-header-desc h2 {
+    margin: 0;
+  }
+  
+  .close-btn {
+    font-size: 30px;
+    font-weight: bold;
+    color: #aaa;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover, .close-btn:focus {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .modal-footer-desc .btn {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .modal-footer-desc .btn:hover {
+    background-color: #45a049;
+  }
+  
 
 
 
@@ -144,3 +205,105 @@ thead#sar_header_thead > tr > th {
 .card-body {
     padding:  0px !important;
 }
+
+
+div.modal-content {
+    color: rgb(10, 0, 0);
+}
+
+
+.tag {
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+    transition: 0.3s;
+}
+
+.tag .btn-close {
+    opacity: 0.7;
+    filter: invert(1);
+}
+
+.tag .btn-close:hover {
+    opacity: 1;
+}
+#desc-modal {
+    font-size: 14px;
+}
+
+
+
+/* استایل‌های مدال */
+.modal-custom {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+  }
+  
+  .modal-content-custom {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  .close-custom {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close-custom:hover,
+  .close-custom:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+div#header_vahed_1 {
+    background-color: #00ADB5;
+}
+div#header_otagh_1 {
+    background-color: #A6E3E9;
+}
+
+div#header_vahed_2 {
+    background-color: #3A59D1;
+}
+div#header_otagh_2 {
+    background-color: #3D90D7;
+}
+div#header_vahed_3 {
+    background-color: #03A791;
+}
+div#header_otagh_3 {
+    background-color: #81E7AF;
+}
+div#header_vahed_4 {
+    background-color: #8F87F1;
+}
+div#header_otagh_4 {
+    background-color: #C68EFD;
+}
+.header_collapse {
+    background-color: #DCD6F7 !important;
+}
+.header_collapse_delete {
+    background-color: #FF9494 !important;
+}
+.hr-shadow {
+    height: 1px;
+    background-color: #3c4248;
+    border: none;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+    margin: 1rem 0;
+  }

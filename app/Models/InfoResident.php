@@ -8,7 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class InfoResident extends Model
 {
     use HasFactory;
-    public function resident() {
+    protected $fillable = [
+        'job',
+        'age',
+        'madrak',
+        'form',
+        'vadeh',
+        'ejareh',
+        // سایر فیلدها
+    ];
+    public function resident()
+    {
         return $this->belongsTo(Resident::class);
     }
 }

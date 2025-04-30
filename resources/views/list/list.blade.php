@@ -1,20 +1,24 @@
 @extends('base.base')
 
 @section('title', 'لیست')
-
+@if(session('error'))
+<div class="alert alert-danger">
+    {{ session('error') }}
+</div>
+@endif
 
 @section('body')
     @foreach ($data as $vaheds)
         <div class="card m-3 text-center">
-            <div class="card-header bg-secondary">
+            <div class="card-header " id="header_vahed_{{$vaheds['vahed_id']}}">
                 {{ $vaheds['vahed_name'] }}
             </div>
             <div class="card-body">
                 <div class="row">
                     @foreach ($vaheds['otaghs'] as $otaghs)
                         <div class="col-md-6">
-                            <div class="custom-card card mb-3">
-                                <div class="card-header bg-secondary">
+                            <div class="custom-card card mb-3 text-center">
+                                <div class="card-header " id="header_otagh_{{$vaheds['vahed_id']}}">
                                     {{ $otaghs['otagh_name'] }}
                                 </div>
                                 <div class="card-body">
@@ -22,6 +26,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                     @endforeach
                 </div>
 
@@ -30,9 +35,14 @@
         </div>
     @endforeach
 
-
 @endsection
 
+@section('footer')
+
+
+@endsection
+@include('list.components.modal-desc')
 @include('list.components.update-collapse')
 @include('list.components.js.update-all-js')
 @include('list.components.js.updateQuick')
+@include('list.components.js.modal-desc-js')

@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('info_residents', function (Blueprint $table) {
             $table->id();
-            $table->text('description')->nullable();
             $table->boolean('vadeh')->default(0);
             $table->boolean('ejareh')->default(0);
             $table->boolean('madrak')->default(0);
-            $table->boolean('has_phone')->default(0);
             $table->boolean('bedehy')->default(0);
             $table->boolean('form')->default(0);
             $table->date('hamahang')->nullable();
