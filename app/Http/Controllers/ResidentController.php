@@ -120,7 +120,6 @@ class ResidentController extends Controller
         // بررسی وجود کاربر با نام یا تلفن یکسان
         $existingUser = Resident::where('full_name', $request->full_name_add)
             ->first();
-
         if ($existingUser) {
             notify()->error('کاربر ' . $request->full_name_add . ' در خوابگاه هست');
             return redirect()->back()
@@ -136,8 +135,8 @@ class ResidentController extends Controller
             return redirect()->back();
         }
         //چک کن ببین شخص دیگه ایی این تخت رو نداره؟
-        $cechk_takht = Resident::where('takht_id', $takht->id);
-        if($cechk_takht){
+        $check_takht = Resident::where('takht_id', $takht->id)->exists();
+        if($check_takht){
             notify()->error('این تخت قبلا انتخاب شده !!!');
             return redirect()->back();
         }

@@ -63,15 +63,15 @@
                             </span>
                         @endforeach
                     </td>
-                    <td class="sdf">
-                        <div class="col-dfsadf"><a href="#" class="m-1 save-resident">
+                    <td class="p-4" style="display: inline-flex">
+                        <div class="" style="margin-right: 10px"> <a href="#" class="m-1 save-resident">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                     fill="currentColor" class="bi bi-play-fill text-success" viewBox="0 0 16 16">
                                     <path
                                         d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
                                 </svg>
                             </a></div>
-                        <div class="cdfsadol-2"><a href="#" class="m-1" data-bs-toggle="offcanvas"
+                        <div class=""style="margin-right: 10px"><a href="#" class="m-1" data-bs-toggle="offcanvas"
                                 data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                     fill="currentColor" class="bi bi-pencil-square text-info" viewBox="0 0 16 16">
@@ -81,7 +81,7 @@
                                         d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                                 </svg>
                             </a></div>
-                        <div class="colsdf-2"><a href="#" class="m-1" id="modalDesc" data-bs-toggle="offcanvas"
+                        <div class=""style="margin-left: 10px"><a href="#" class="m-1" id="modalDesc" data-bs-toggle="offcanvas"
                                 data-bs-target="#modalDesc" aria-controls="modalDesc">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                     fill="currentColor" class="bi bi-brush-fill text-primary" viewBox="0 0 16 16">

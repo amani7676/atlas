@@ -17,7 +17,7 @@
                 <div class="row">
                     @foreach ($vaheds['otaghs'] as $otaghs)
                         <div class="col-md-6">
-                            <div class="custom-card card mb-3 text-center">
+                            <div class="custom-card card mb-3 text-center" id={{$otaghs['otagh_name']}}>
                                 <div class="card-header " id="header_otagh_{{$vaheds['vahed_id']}}">
                                     {{ $otaghs['otagh_name'] }}
                                 </div>
