@@ -26,7 +26,7 @@
                             }
 
                         @endphp
-                        @if ($resident['state'] == 'leaving')
+                        @if (isset($resident['state']) && $resident['state'] == "leaving")
                             <tr>
                                 <td>{{ $resident['otagh_name'] }}</td>
                                 <td>{{ $resident['full_name'] }}</td>

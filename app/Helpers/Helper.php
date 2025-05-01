@@ -14,6 +14,17 @@ class Helper
                 return 'success';
             }
         }
+
+        public static function ColorStateTd($state): void
+        {
+            if($state == 'reserve'){
+                echo "tdreserve";
+            }else if($state == 'leaving'){
+               echo "tdleaving";
+            }else  {
+                echo "";
+            }
+        }
     
     
 }

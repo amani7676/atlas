@@ -8,7 +8,8 @@
                 @include('main.partials.sar')
             </div>
             <div class="col-md-5">
-                @include('main.partials.bedehy')
+                
+                @include('main.partials.rezerve')
             </div>
         </div>
 
@@ -32,7 +33,8 @@
                 @include('main.partials.form')
             </div>
             <div class="col-md-4">
-                @include('main.partials.tozihat')
+                {{-- @include('main.partials.tozihat') --}}
+                @include('main.partials.bedehy')
             </div>
         </div>
 

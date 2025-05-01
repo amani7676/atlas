@@ -15,7 +15,8 @@ class InfoResident extends Model
         'form',
         'vadeh',
         'ejareh',
-        // سایر فیلدها
+        'state',
+        'created_at'
     ];
     public function resident()
     {

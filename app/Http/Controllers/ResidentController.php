@@ -122,9 +122,7 @@ class ResidentController extends Controller
             ->first();
         if ($existingUser) {
             notify()->error('کاربر ' . $request->full_name_add . ' در خوابگاه هست');
-            return redirect()->back()
-                ->with('error', 'کاربر با این نام یا شماره تلفن قبلا ثبت شده است.')
-                ->withInput();
+            return redirect()->back();
         }
 
         // جستجوی تخت و اتاق
@@ -145,6 +143,8 @@ class ResidentController extends Controller
         $ejareh_add = $request->ejareh_add === 'on' ? 1 : 0;
         $madrak_add = $request->madrak_add === 'on' ? 1 : 0;
         $form_add = $request->form_add === 'on' ? 1 : 0;
+        dd($request->all(), $request->desc_text_add, $request->desc_type_add);
+
         // ذخیره اطلاعات
         try {
             $data = Resident::create([
@@ -167,7 +167,7 @@ class ResidentController extends Controller
                 'form' => $form_add,
                 'created_at' => now(),
             ]);
-            if (!isNull($request->desc_text_add)) {
+            if (!is_null($request->desc_text_add)) {
                 $data->descriptions()->create([
                     'desc' => $request->desc_text_add,
                     'type' => $request->desc_type_add
@@ -185,9 +185,7 @@ class ResidentController extends Controller
             notify()->success('کاربر با موفقیت اضافه شد');
             return redirect()->back();
         } catch (\Exception $e) {
-            // return redirect()->back()
-            // ->with('error', 'خطا در ذخیره اطلاعات: ' . $e->getMessage())
-            // ->withInput();
+            
             dd($e->getMessage());
         }
     }

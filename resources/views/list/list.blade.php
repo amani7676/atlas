@@ -1,11 +1,7 @@
 @extends('base.base')
 
 @section('title', 'لیست')
-@if(session('error'))
-<div class="alert alert-danger">
-    {{ session('error') }}
-</div>
-@endif
+
 
 @section('body')
     @foreach ($data as $vaheds)

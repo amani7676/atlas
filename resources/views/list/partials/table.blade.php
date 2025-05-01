@@ -13,7 +13,6 @@
     <tbody class="align-middle">
 
         @foreach ($otaghs['takhts'] as $takhts)
-     
             @php
                 $bedheyDescriptions = [];
 
@@ -22,14 +21,14 @@
                         $bedheyDescriptions[] = $description['desc'];
                     }
                 }
-
             @endphp
             @if ($takhts['resident'] == null)
                 <tr>
                     <td>{{ substr($takhts['takht_name'], -1) }}</td>
                     <td colspan="3"></td>
-                    <td colspan="3" > 
-                        <a href="" data-bs-toggle="modal" data-bs-target="#addResidentTarget" data-takht_id="{{$takhts['takht_name']}}" data-otagh_id={{$otaghs['otagh_name']}}>
+                    <td colspan="3">
+                        <a href="" data-bs-toggle="modal" data-bs-target="#addResidentTarget"
+                            data-takht_id="{{ $takhts['takht_name'] }}" data-otagh_id={{ $otaghs['otagh_name'] }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="currentColor"
                                 class="bi bi-person-fill-add" viewBox="0 0 16 16">
                                 <path
@@ -41,14 +40,31 @@
                     </td>
                 </tr>
             @else
-                <tr data-resident-id="{{ $takhts['resident']['resident_id'] }}">
-                    <td id="takht_name">{{ substr($takhts['takht_name'], -1) }}</td>
-                    <td><input type="text" name="full_name" class="form-control"
-                            value="{{ $takhts['resident']['full_name'] }}"></td>
-                    <td><input type="text" name="phone" class="form-control"
-                            value="{{ $takhts['resident']['phone'] }}"></td>
-                    <td><input type="text" name="end_date" class="form-control"
-                            value="{{ $takhts['resident']['end_date'] }}"></td>
+                {{-- @php
+                    $color_state = null;
+                    if ($takhts['resident']['info']['state'] == 'reserve') {
+                        $color_state = '';
+                    } elseif ($takhts['resident']['info']['state'] == 'leaving') {
+                        $color_state = '';
+                    }
+                @endphp --}}
+                <tr data-resident-id="{{ $takhts['resident']['resident_id'] }}"
+                 id="{{ isset($takhts['resident']['info']['state']) ? \App\Helpers\Helper::ColorStateTd($takhts['resident']['info']['state']) : '' }}">
+                    <td id="takht_name" >
+                        {{ substr($takhts['takht_name'], -1) }}
+                    </td>
+                    <td>
+                        <input type="text" name="full_name" class="form-control"
+                            value="{{ $takhts['resident']['full_name'] }}">
+                    </td>
+                    <td>
+                        <input type="text" name="phone" class="form-control"
+                            value="{{ $takhts['resident']['phone'] }}">
+                    </td>
+                    <td>
+                        <input type="text" name="end_date" class="form-control"
+                            value="{{ $takhts['resident']['end_date'] }}">
+                    </td>
 
                     <td>
                         <span style="font-size: 13px"
@@ -63,16 +79,18 @@
                             </span>
                         @endforeach
                     </td>
-                    <td class="p-4" style="display: inline-flex">
-                        <div class="" style="margin-right: 10px"> <a href="#" class="m-1 save-resident">
+                    <td class="p-4">
+                        <div class="" style="margin-right: 10px; display: inline-block;"> <a href="#"
+                                class="m-1 save-resident">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                     fill="currentColor" class="bi bi-play-fill text-success" viewBox="0 0 16 16">
                                     <path
                                         d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
                                 </svg>
                             </a></div>
-                        <div class=""style="margin-right: 10px"><a href="#" class="m-1" data-bs-toggle="offcanvas"
-                                data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                        <div class=""style="margin-right: 10px; display: inline-block;"><a href="#"
+                                class="m-1" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
+                                aria-controls="staticBackdrop">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                     fill="currentColor" class="bi bi-pencil-square text-info" viewBox="0 0 16 16">
                                     <path
@@ -81,8 +99,9 @@
                                         d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                                 </svg>
                             </a></div>
-                        <div class=""style="margin-left: 10px"><a href="#" class="m-1" id="modalDesc" data-bs-toggle="offcanvas"
-                                data-bs-target="#modalDesc" aria-controls="modalDesc">
+                        <div class=""style="margin-left: 10px; display: inline-block;"><a href="#"
+                                class="m-1" id="modalDesc" data-bs-toggle="offcanvas" data-bs-target="#modalDesc"
+                                aria-controls="modalDesc">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                     fill="currentColor" class="bi bi-brush-fill text-primary" viewBox="0 0 16 16">
                                     <path

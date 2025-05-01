@@ -23,7 +23,7 @@
                                 }
                             }
                         @endphp
-                        @if ($resident['madrak'] == '0')
+                        @if (isset($resident['madrak']) && $resident['madrak'] == '0')
                             <tr>
                                 <td>{{ $resident['otagh_name'] }}</td>
                                 <td>{{ $resident['full_name'] }}</td>

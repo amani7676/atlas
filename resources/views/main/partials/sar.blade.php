@@ -24,7 +24,7 @@
                                  }
                              }
                          @endphp
-                         @if ($resident['sarrsed'] <= 0)
+                         @if ($resident['sarrsed'] <= 0 && ( $resident['state'] == 'active' || $resident['state'] == 'leaving'))
                              <tr>
                                  <td>{{ $resident['otagh_name'] }}</td>
                                  <td>{{ $resident['full_name'] }}</td>
