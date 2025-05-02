@@ -41,7 +41,7 @@ class OtaghSeeder extends Seeder
             ['id' => 23, 'name' => '303', 'total' => 6, 'vahed_id' => 3],
             ['id' => 24, 'name' => '304', 'total' => 4, 'vahed_id' => 3],
             ['id' => 25, 'name' => '305', 'total' => 4, 'vahed_id' => 3],
-            ['id' => 26, 'name' => '306', 'total' => 6, 'vahed_id' => 3],
+            ['id' => 26, 'name' => '306', 'total' => 4, 'vahed_id' => 3],
             ['id' => 27, 'name' => '307', 'total' => 4, 'vahed_id' => 3],
             ['id' => 28, 'name' => '308', 'total' => 4, 'vahed_id' => 3],
             ['id' => 29, 'name' => '309', 'total' => 6, 'vahed_id' => 3],

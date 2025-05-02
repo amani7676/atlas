@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Otagh;
 use App\Models\Resident;
 use App\Models\Vahed;
 use Carbon\Carbon;
@@ -106,7 +107,6 @@ class DataServices
         return $data;
     }
 
-
     public function getResidents($data)
     {
 
@@ -194,4 +194,134 @@ class DataServices
 
         return $residents;
     }
+
+    public function getVahedPerTotalOtaghs() {
+        // لود اتاقها و تختهای مرتبط با وضعیت آنها
+        $vaheds = Vahed::with(['otaghs.takhts'])->get();
+    
+        $result = [];
+        foreach ($vaheds as $vahed) {
+            $vahedData = [
+                'vahed' => $vahed->id,
+                'otaghs' => []
+            ];
+    
+            $takhtGroups = [];
+            foreach ($vahed->otaghs as $otagh) {
+                // گروهبندی اتاقها بر اساس تعداد تخت (فیلد total)
+                $type = $otagh->total . ' takht';
+                
+                if (!isset($takhtGroups[$type])) {
+                    $takhtGroups[$type] = [
+                        'total_otaghs' => 0,
+                        'total_takhts' => 0,
+                        'states' => [
+                            'empty' => 0,
+                            'full' => 0,
+                            'reserve' => 0
+                        ]
+                    ];
+                }
+    
+                // شمارش اتاقها و تختها
+                $takhtGroups[$type]['total_otaghs']++;
+                $takhtGroups[$type]['total_takhts'] += $otagh->total;
+    
+                // شمارش وضعیت تختهای این اتاق
+                foreach ($otagh->takhts as $takht) {
+                    $state = $takht->state;
+                    $takhtGroups[$type]['states'][$state]++;
+                }
+            }
+    
+            $vahedData['otaghs'] = $takhtGroups;
+            $result[] = $vahedData;
+        }
+    
+        return $result;
+    }
+
+    public function getTotalPerVahed() {
+        // لود تمام دادههای مرتبط (اتاقها و تختها)
+        $vaheds = Vahed::with(['otaghs.takhts'])->get();
+    
+        $result = [];
+        foreach ($vaheds as $vahed) {
+            $totalTakhts = 0;
+            $emptyCount = 0;
+            $fullCount = 0;
+            $reserveCount = 0;
+    
+            // محاسبه مجموع تختها و وضعیتها برای واحد جاری
+            foreach ($vahed->otaghs as $otagh) {
+                foreach ($otagh->takhts as $takht) {
+                    $totalTakhts++;
+                    switch ($takht->state) {
+                        case 'empty':
+                            $emptyCount++;
+                            break;
+                        case 'full':
+                            $fullCount++;
+                            break;
+                        case 'reserve':
+                            $reserveCount++;
+                            break;
+                    }
+                }
+            }
+    
+            // افزودن دادهها به نتیجه
+            $result[] = [
+                "vahed" => $vahed->id,
+                "otaghs" => [
+                    'total' => $totalTakhts,
+                    'empty' => $emptyCount,
+                    'full' => $fullCount,
+                    'reserve' => $reserveCount
+                ]
+            ];
+        }
+    
+        return $result;
+    }
+
+    public function getTotalTakhtsPerNumbers() {
+        // لود تمام اتاقها و تختهای مرتبط
+        $otaghs = Otagh::with('takhts')->get();
+    
+        $result = [];
+        foreach ($otaghs as $otagh) {
+            // تشخیص نوع اتاق بر اساس تعداد تخت (فیلد total)
+            $type = $otagh->total . ' takhteh';
+    
+            // اگر گروه وجود ندارد، آن را ایجاد کن
+            if (!isset($result[$type])) {
+                $result[$type] = [
+                    'all' => 0,
+                    'full' => 0,
+                    'empty' => 0,
+                    'reserve' => 0
+                ];
+            }
+    
+            // شمارش وضعیت تختهای این اتاق
+            foreach ($otagh->takhts as $takht) {
+                $result[$type]['all']++;
+                switch ($takht->state) {
+                    case 'full':
+                        $result[$type]['full']++;
+                        break;
+                    case 'empty':
+                        $result[$type]['empty']++;
+                        break;
+                    case 'reserve':
+                        $result[$type]['reserve']++;
+                        break;
+                }
+            }
+        }
+    
+        return $result;
+    }
 }
+
