@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DescriptionsController;
+use App\Http\Controllers\InfoTakhtController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ResidentController;
@@ -29,6 +30,7 @@ Route::put('/resident/update/', [ResidentController::class, 'update'])->name('re
 Route::put('/resident/getDasc/{resident}', [DescriptionsController::class, 'GetDescriptions'])->name('resident.getDesc');
 Route::post('/resident/addDesc/', [DescriptionsController::class, 'AddDescriptions'])->name('resident.addDesc');
 Route::post('/resident/deleteDesc/{description}', [DescriptionsController::class, 'DeleteDescriptions'])->name('resident.deleteDesc');
-
-
 Route::post('/add_resident/', [ResidentController::class, 'AddResident'])->name('resident.addResident');
+
+//امار تخت ها
+Route::get('/takhts-showList', [InfoTakhtController::class,'showList'])->name('thakts.show');

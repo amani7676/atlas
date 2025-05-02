@@ -33,9 +33,18 @@
                         <div class="card-header header_collapse">شغل، سن، مدرک، فرم</div>
                         <div class="card-body">
                             <div class="row m-2">
-                                <div class="col">
-                                    <label for="">شغل</label>
-                                    <input type="text" name="job_collapse" class="form-control" id="job_collapse">
+                                <div class="col-2" style="width: 34%">
+                                    <label for="job_collapse" class="form-label">شغل</label>
+                                    <select name="job_collapse" id="job_collapse" class="form-control">
+                                        <option value="">شغل را انتخاب کنید!</option>
+                                        <option value="daneshjo_azad">دانشجو-ازاد</option>
+                                        <option value="karmand_dolat">دانشجو-دولتی</option>
+                                        <option value="danshjo_sair">دانشجو-سایر</option>
+                                        <option value="danshjo_dolati">کارمند-دولتی</option>
+                                        <option value="karmand_shkhse">کارمند-شخصی</option>
+                                        <option value="sair">سایر</option>
+                                    </select>
+                                   
                                 </div>
                                 <div class="col-2">
                                     <label for="">سن</label>

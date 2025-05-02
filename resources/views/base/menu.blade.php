@@ -19,7 +19,7 @@
                     <a class="nav-link" href="{{ route('main')}}">صفحه اصلی</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">درباره ما</a>
+                    <a class="nav-link" href="{{route('thakts.show')}}">آمار تخت ها</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('list')}}">لیست اقامتگران</a>

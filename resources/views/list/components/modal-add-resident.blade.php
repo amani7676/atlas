@@ -61,8 +61,15 @@
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <label for="job_add" class="form-label">شغل</label>
-                                                    <input type="text" class="form-control" id="job_add" name="job_add"
-                                                        placeholder="شغل را وارد کنید">
+                                                    <select name="job_add" id="job_add" class="form-control">
+                                                        <option value="">شغل را انتخاب کنید!</option>
+                                                        <option value="daneshjo_azad">دانشجو-ازاد</option>
+                                                        <option value="karmand_dolat">دانشجو-دولتی</option>
+                                                        <option value="danshjo_sair">دانشجو-سایر</option>
+                                                        <option value="danshjo_dolati">کارمند-دولتی</option>
+                                                        <option value="karmand_shkhse">کارمند-شخصی</option>
+                                                        <option value="sair">سایر</option>
+                                                    </select>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="age_add" class="form-label">سن</label>
