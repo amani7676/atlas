@@ -26,6 +26,7 @@
                     },
                     data: data,
                     success: function(response) {
+
                         $('#full_name-collapse').text(response.data[0].full_name); // برای h4
                         $('#takht_name_collapse').val(takht_name); // شماره تخت
                         $('#job_collapse').val(response.data[0].job); // شغل
@@ -38,6 +39,7 @@
                         $('#ajareh_collapse').prop('checked', response.data[0].ejareh); // فرم
                         $('input[name="id"]').val(response.data[0]
                         .resident_id); // 123 مثال از یک ID
+                        $('select[name="state_collapse"]').val(response.data[0].state);
                         
 
                     },

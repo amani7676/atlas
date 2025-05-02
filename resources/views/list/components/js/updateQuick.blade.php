@@ -29,10 +29,10 @@
                             $row.find('input[name="full_name"]').val(response.data.full_name);
                             $row.find('input[name="phone"]').val(response.data.phone);
                             $row.find('input[name="end_date"]').val(response.data.end_date);
-                            $row.find('td span').text(response.data.sarrsed);
+                            $row.find('td span#showSar').text(response.data.sarrsed);
 
                             const $badge = $row.find(
-                                'td span') // یا انتخاب دقیق‌تر با توجه به ساختار HTML شما
+                                'td span#showSar') // یا انتخاب دقیق‌تر با توجه به ساختار HTML شما
                             // دریافت مقدار جدید sarrsed از response (فرض می‌کنیم در response.updatedData موجود است)
                             const newSarrsedValue = response.data.sarrsed;
                             // آپدیت کلاس و متن badge

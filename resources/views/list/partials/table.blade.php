@@ -52,7 +52,7 @@
                  id="{{ isset($takhts['resident']['info']['state']) ? \App\Helpers\Helper::ColorStateTd($takhts['resident']['info']['state']) : '' }}">
                     <td id="takht_name" >
                         {{ substr($takhts['takht_name'], -1) }}
-                    </td>
+                    </td> 
                     <td>
                         <input type="text" name="full_name" class="form-control"
                             value="{{ $takhts['resident']['full_name'] }}">
@@ -67,7 +67,7 @@
                     </td>
 
                     <td>
-                        <span style="font-size: 13px"
+                        <span style="font-size: 13px" id="showSar"
                             class="badge text-bg-{{ \App\Helpers\Helper::getSarrsedStatus($takhts['resident']['sarrsed']) }}">{{ $takhts['resident']['sarrsed'] }}
                         </span>
                     </td>

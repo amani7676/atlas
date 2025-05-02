@@ -88,7 +88,7 @@ class ResidentController extends Controller
 
     public function update(Request $request)
     {
-
+        
         // یافتن رزیدنت بر اساس ID
         $resident = Resident::findOrFail($request->id);
         // یافتن اطلاعات مرتبط رزیدنت
@@ -108,6 +108,7 @@ class ResidentController extends Controller
             'form' => $request->has('form_collapse') ? 1 : 0,
             'vadeh' => $request->has('vadeh_collapse') ? 1 : 0,
             'ejareh' => $request->has('ajareh_collapse') ? 1 : 0,
+            'state' => $request->state_collapse,
         ]);
         notify()->success('مشخصات ' . $resident->full_name . ' تغییر یافت');
 
@@ -143,7 +144,7 @@ class ResidentController extends Controller
         $ejareh_add = $request->ejareh_add === 'on' ? 1 : 0;
         $madrak_add = $request->madrak_add === 'on' ? 1 : 0;
         $form_add = $request->form_add === 'on' ? 1 : 0;
-        dd($request->all(), $request->desc_text_add, $request->desc_type_add);
+        // dd($request->all(), $request->desc_text_add, $request->desc_type_add);
 
         // ذخیره اطلاعات
         try {

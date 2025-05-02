@@ -7,10 +7,10 @@
     @foreach ($data as $vaheds)
         <div class="card m-3 text-center">
             <div class="card-header " id="header_vahed_{{$vaheds['vahed_id']}}">
-                {{ $vaheds['vahed_name'] }}
+                {{ $vaheds['vahed_hoveat'] }}
             </div>
             <div class="card-body">
-                <div class="row">
+                <div class="row"> 
                     @foreach ($vaheds['otaghs'] as $otaghs)
                         <div class="col-md-6">
                             <div class="custom-card card mb-3 text-center" id={{$otaghs['otagh_name']}}>

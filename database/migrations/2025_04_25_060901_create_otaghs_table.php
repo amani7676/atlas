@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('otaghs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('total');
             $table->foreignId('vahed_id')->constrained('vaheds')->onDelete('cascade');
             $table->timestamps();
         });

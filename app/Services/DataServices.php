@@ -46,6 +46,7 @@ class DataServices
             $vahedData = [
                 'vahed_id' => $vahed->id,
                 'vahed_name' => $vahed->name,
+                'vahed_hoveat' => $vahed->hoveat,
                 'otaghs' => [],
             ];
 
