@@ -209,7 +209,7 @@ class DataServices
             $takhtGroups = [];
             foreach ($vahed->otaghs as $otagh) {
                 // گروهبندی اتاقها بر اساس تعداد تخت (فیلد total)
-                $type = $otagh->total . ' takht';
+                $type = $otagh->total . ' تخت';
                 
                 if (!isset($takhtGroups[$type])) {
                     $takhtGroups[$type] = [
@@ -292,7 +292,7 @@ class DataServices
         $result = [];
         foreach ($otaghs as $otagh) {
             // تشخیص نوع اتاق بر اساس تعداد تخت (فیلد total)
-            $type = $otagh->total . ' takhteh';
+            $type = $otagh->total . ' تخت';
     
             // اگر گروه وجود ندارد، آن را ایجاد کن
             if (!isset($result[$type])) {

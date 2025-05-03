@@ -25,6 +25,18 @@ class Helper
                 echo "";
             }
         }
-    
+        
+        public static function ColorAmarTakhts($id_vahed)
+        {
+            if($id_vahed == 1){
+                echo "red";
+            }else if($id_vahed == 2){
+                echo "blue";
+            }else if($id_vahed == 3){
+                echo "green";
+            }else{
+                echo "yellow";
+            }
+        }
     
 }

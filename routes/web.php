@@ -5,6 +5,7 @@ use App\Http\Controllers\InfoTakhtController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ResidentController;
+use App\Http\Controllers\SearchController;
 use App\Models\Vahed;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,5 @@ Route::post('/add_resident/', [ResidentController::class, 'AddResident'])->name(
 
 //امار تخت ها
 Route::get('/takhts-showList', [InfoTakhtController::class,'showList'])->name('thakts.show');
+Route::get('/search', [SearchController::class,'index'])->name('search');
+Route::get('/search-list-resident', [SearchController::class,'showList'])->name('sarch.showList');
