@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Takht extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'state'
+    ];
     public function otagh() {
         return $this->belongsTo(Otagh::class);
     }

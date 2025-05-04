@@ -37,3 +37,10 @@ Route::post('/add_resident/', [ResidentController::class, 'AddResident'])->name(
 Route::get('/takhts-showList', [InfoTakhtController::class,'showList'])->name('thakts.show');
 Route::get('/search', [SearchController::class,'index'])->name('search');
 Route::get('/search-list-resident', [SearchController::class,'showList'])->name('sarch.showList');
+
+//softDelete and force resident
+Route::get('/forcedelete_resident/{id}', [ResidentController::class, 'ForceDelete'])->name('resident.forcedelete');
+Route::get('/softdelete_resident/{id}', [ResidentController::class, 'SoftDelete'])->name('resident.softdelete');
+
+//change form and madrk
+Route::get('resident_change_fm/', action: [ResidentController::class, 'ChangeFM'])->name('change_madrak_form');

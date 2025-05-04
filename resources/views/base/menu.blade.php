@@ -11,7 +11,7 @@
                     </button>
             </div>
             <!-- نتایج (مخفی در ابتدا) -->
-<div id="ajaxResults" style="display: none; position: absolute; z-index: 1000; background: white; border: 1px solid #ddd;"></div>
+<div id="ajaxResults" style="display: none; position: absolute; z-index: 1000; background: white; border: 1px solid #ddd;border-radius: 25px"></div>
         </div>
         
         <!-- آیتم های منو -->

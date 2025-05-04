@@ -38,18 +38,47 @@
                         $('#vadeh_collapse').prop('checked', response.data[0].vadeh); // فرم
                         $('#ajareh_collapse').prop('checked', response.data[0].ejareh); // فرم
                         $('input[name="id"]').val(response.data[0]
-                        .resident_id); // 123 مثال از یک ID
+                            .resident_id); // 123 مثال از یک ID
                         $('select[name="state_collapse"]').val(response.data[0].state);
-                        
 
+                        //مقدار دهی برای دکمه های حذف
+
+                        $('#etmamgharardad').data('resident-id', response.data[0]
+                            .resident_id);
+                        $('#delete_col_az_database').data('resident-id', response.data[0]
+                            .resident_id);
                     },
                     error: function(xhr) {
                         console.error('خطا:', xhr.responseText);
                     }
                 });
+            });
 
+            $('#etmamgharardad').click(function(e) {
+                e.preventDefault(); // جلوگیری از رفتار پیشفرض لینک
 
+                // دریافت resident_id از data attribute
+                var residentId = $(this).data('resident-id');
 
+                // ساخت URL با استفاده از route Laravel
+                var deleteUrl = "{{ route('resident.softdelete', ['id' => ':id']) }}".replace(':id',
+                    residentId);
+
+                // هدایت کاربر به مسیر حذف (GET)
+                window.location.href = deleteUrl;
+            });
+            $('#delete_col_az_database').click(function(e) {
+                e.preventDefault(); // جلوگیری از رفتار پیشفرض لینک
+
+                // دریافت resident_id از data attribute
+                var residentId = $(this).data('resident-id');
+
+                // ساخت URL با استفاده از route Laravel
+                var deleteUrl = "{{ route('resident.forcedelete', ['id' => ':id']) }}".replace(':id',
+                    residentId);
+
+                // هدایت کاربر به مسیر حذف (GET)
+                window.location.href = deleteUrl;
             });
         });
     </script>

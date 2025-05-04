@@ -6,6 +6,7 @@ $(document).ready(function () {
 
     // تابع تولید جدول
     function generateTable(residents) {
+        
         let baseUrl = 'list';
         let html = `
             <table style="width:100%; border-collapse:collapse; " class="hover">
@@ -19,10 +20,15 @@ $(document).ready(function () {
                     </tr>
                 </thead>
                 <tbody>`;
-
-        residents.forEach(resident => {
-            let dynamicUrl = baseUrl + '#' + resident.otagh_name;
+        if (!residents || residents.length === 0 ) {
             html += `
+                        <tr>
+                            <td colspan="5" style="padding:10px; text-align:center; color:red;">یافت نشد!</td>
+                        </tr>`;
+        } else {
+            residents.forEach(resident => {
+                let dynamicUrl = baseUrl + '#' + resident.otagh_name;
+                html += `
                 <tr>
                     <td style="padding:8px; border-bottom:1px solid #eee;">${resident.takht_name}</td>
                     <td style="padding:8px; border-bottom:1px solid #eee;">${resident.otagh_name}</td>
@@ -35,8 +41,8 @@ $(document).ready(function () {
 </svg></a>
                     </td>
                 </tr>`;
-        });
-
+            });
+        }
         html += `</tbody></table>`;
         return html;
     }
@@ -58,7 +64,7 @@ $(document).ready(function () {
                 method: 'GET',
                 data: { search: searchTerm },
                 success: function (residents) {
-                    console.log(residents);
+                  
                     if (residents.length > 0) {
                         $resultsDiv.html(generateTable(residents))
                             .show()
@@ -68,7 +74,14 @@ $(document).ready(function () {
                                 of: $searchInput
                             });
                     } else {
-                        $resultsDiv.hide();
+                        $resultsDiv.html(generateTable(residents))
+                        .show()
+                        .position({
+                            my: "left top",
+                            at: "left bottom",
+                            of: $searchInput
+                        });
+                        // $resultsDiv.hide();
                     }
                 },
                 error: function () {

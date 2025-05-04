@@ -1,0 +1,9 @@
+1. database name => atlas1
+
+2. composer install
+
+3. php artisan migrate
+
+4. run seeders [
+    php artisan db:seed ==> for run in command
+]

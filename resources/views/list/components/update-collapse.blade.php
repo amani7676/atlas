@@ -44,7 +44,7 @@
                                         <option value="karmand_shkhse">کارمند-شخصی</option>
                                         <option value="sair">سایر</option>
                                     </select>
-                                   
+
                                 </div>
                                 <div class="col-2">
                                     <label for="">سن</label>
@@ -90,19 +90,24 @@
                         </div>
                     </div>
 
-                    <div class="card ">
-                        <div class="card-header header_collapse_delete ">حذف کاربر</div>
-                        <div class="card-body m-3">
-                            <button class="btn btn-danger">حذف </button>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
 
             <!-- دکمه‌ها -->
-            <div class="d-flex justify-content-between w-25">
-                <button type="submit" class="btn btn-success" id="update_collapse">تایید</button>
+            <div class="d-flex justify-content-between w-35 ">
+                <button type="submit" class="btn btn-success p-3" id="update_collapse">ویرایش</button>
             </div>
         </form>
+
+        <div class="card " >
+            <div class="card-header header_collapse_delete " >حذف کاربر</div>
+            <div class="card-body m-3">
+                <a href="" class="btn btn-warning" id="etmamgharardad" data-resident-id="">اتمام قرارداد</a>
+            </div>
+            <div class="card-body m-3">
+                <a class="btn btn-danger" id="delete_col_az_database" data-resident-id="">حذف </a>
+            </div>
+        </div>
     </div>
 </div>

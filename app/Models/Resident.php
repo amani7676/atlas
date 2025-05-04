@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Resident extends Model
 {
-    use HasFactory;
+    use HasFactory; 
+    use SoftDeletes;
     protected $dates = ['deleted_at']; // (اختیاری) برای Laravel 5.x
+   
     // app/Models/Post.php
     protected $fillable = ['full_name', 'phone', 'end_date', 'takht_id', 'otagh_id', 'created_at'];
     public function infoResident()

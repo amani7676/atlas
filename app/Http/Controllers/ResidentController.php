@@ -88,7 +88,7 @@ class ResidentController extends Controller
 
     public function update(Request $request)
     {
-        
+
         // یافتن رزیدنت بر اساس ID
         $resident = Resident::findOrFail($request->id);
         // یافتن اطلاعات مرتبط رزیدنت
@@ -99,6 +99,7 @@ class ResidentController extends Controller
             'otagh_name' => $request->otagh_name_collapse,
             'takht_name' => $request->takht_name_collapse,
         ]);
+        //تغییر وضعیت تخت با اقامتگر
 
         // بروزرسانی فیلدهای رزیدنت اینفو (جدول resident_infos)
         $residentInfo->update([
@@ -110,6 +111,17 @@ class ResidentController extends Controller
             'ejareh' => $request->has('ajareh_collapse') ? 1 : 0,
             'state' => $request->state_collapse,
         ]);
+        $takht = Takht::find($resident->takht_id);
+        if ($request->state_collapse == 'active' || $request->state_collapse == 'leaving') {
+            $takht->update([
+                'state' => 'full'
+            ]);
+        } else if ($request->state_collapse == 'reserve') {
+            $takht->update([
+                'state' => 'reserve'
+            ]);
+        }
+
         notify()->success('مشخصات ' . $resident->full_name . ' تغییر یافت');
 
         return redirect()->back()->with('success', 'اطلاعات با موفقیت آپدیت شد!');
@@ -135,7 +147,7 @@ class ResidentController extends Controller
         }
         //چک کن ببین شخص دیگه ایی این تخت رو نداره؟
         $check_takht = Resident::where('takht_id', $takht->id)->exists();
-        if($check_takht){
+        if ($check_takht) {
             notify()->error('این تخت قبلا انتخاب شده !!!');
             return redirect()->back();
         }
@@ -175,7 +187,7 @@ class ResidentController extends Controller
                 ]);
             }
             //change state takht
-            if ($request->state_add == 'active' ||$request->state_add == 'leaving'  ) {
+            if ($request->state_add == 'active' || $request->state_add == 'leaving') {
                 $takht->state = 'full'; // مقدار جدید برای وضعیت
                 $takht->save();
             } else if ($request->state_add == 'reserve') {
@@ -186,8 +198,60 @@ class ResidentController extends Controller
             notify()->success('کاربر با موفقیت اضافه شد');
             return redirect()->back();
         } catch (\Exception $e) {
-            
+
             dd($e->getMessage());
         }
+    }
+
+    public function ForceDelete($id)
+    {
+        $resident = Resident::find($id); // پیدا کردن رکورد با ID مشخص
+        if ($resident) {
+            $resident->infoResident->update([
+                'state' => 'exit'
+            ]);
+            $resident->infoResident->forceDelete();
+            $resident->forceDelete(); // حذف کامل رکورد از دیتابیس
+            $takht = Takht::find($resident->takht_id);
+            $takht->update([
+                'state' => 'empty',
+            ]);
+        }
+
+
+        emotify('error', 'اقامتگر حذف شد');
+        return redirect()->back();
+    }
+    public function SoftDelete($id)
+    {
+        $resident = Resident::find($id); // پیدا کردن رکورد با ID مشخص
+        if ($resident) {
+            $resident->infoResident->update([
+                'state' => 'exit'
+            ]);
+            $resident->infoResident->delete();
+            $resident->delete(); // حذف نرم رکورد
+            $takht = Takht::find($resident->takht_id);
+            $takht->update([
+                'state' => 'empty',
+            ]);
+        }
+
+        emotify('success', 'اقامتگر در لیست خروج قرار گرفت');
+        return redirect()->back();
+    }
+
+    public function ChangeFM(Request $request)
+    {
+        
+        // یافتن رزیدنت و اطلاعات مرتبط
+        $resident = Resident::findOrFail($request->id);
+        if($resident){
+            $resident->infoResident()->update([
+                $request->name => 1
+            ]);
+        }
+        emotify('success', ''.$request->getScriptName.' دریافت شد');
+        return redirect()->back();
     }
 }

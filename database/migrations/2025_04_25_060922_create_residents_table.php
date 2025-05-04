@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('residents', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
-            $table->bigInteger('phone')->nullable();
+            $table->string('phone')->nullable();
             $table->foreignId('takht_id');
             $table->foreignId('otagh_id')->constrained('otaghs')->onDelete('cascade');
             $table->date('start_date')->nullable();
