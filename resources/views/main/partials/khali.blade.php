@@ -42,7 +42,7 @@
                 </tbody>
             </table>
             @if ($counter >= 10)
-            <h3 class="bg-danger p-2">بیشتر از 15 تا خالی نمایش داده نمیشود</h3>
+            <h5 class="bg-danger p-2">بیشتر از 15 تا خالی نمایش داده نمیشود</h5>
         @endif
         </div>
     </div>

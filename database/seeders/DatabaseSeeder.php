@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             VahedSeeder::class,
             OtaghSeeder::class,
-
             TakhteSeeder::class
 
         ]);
