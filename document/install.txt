@@ -1,6 +1,12 @@
 1. database name => atlas1
 
-2. composer install
+2. [
+        composer install   ,
+        cp .env.example .env   ,
+        php artisan key:generate  ,
+] 
+
+
 
 3. php artisan migrate
 
