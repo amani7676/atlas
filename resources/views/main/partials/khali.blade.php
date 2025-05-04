@@ -12,10 +12,13 @@
                     </tr>
                 </thead>
                 <tbody class="align-middle">
+                    @php
+                        $counter = 0;
+                    @endphp
                     @foreach ($data as $vaheds)
                         @foreach ($vaheds['otaghs'] as $otaghs)
                             @foreach ($otaghs['takhts'] as $takhts)
-                                @if ($takhts['state'] == 'empty')
+                                @if ($takhts['state'] == 'empty' && $counter < 15)
                                     <tr>
                                         <td>{{$otaghs['otagh_name']}}</td>
                                         <td>{{explode('_', $takhts['takht_name'])[1]}}</td>
@@ -28,12 +31,19 @@
                                             </a>
                                         </td>
                                     </tr>
+                                    @php
+                                        $counter++;
+                                    @endphp
                                 @endif
                             @endforeach
                         @endforeach
                     @endforeach
+                   
                 </tbody>
             </table>
+            @if ($counter >= 10)
+            <h3 class="bg-danger p-2">بیشتر از 15 تا خالی نمایش داده نمیشود</h3>
+        @endif
         </div>
     </div>
 </div>

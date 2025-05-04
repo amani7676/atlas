@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('state', ['active', 'reserve','leaving' ,'exit'])->default('active');
             $table->enum('job', [
                 'karmand_dolat', 'karmand_shkhse','daneshjo_azad' ,'danshjo_dolati','danshjo_sair','sair'
-                ])->default('active')->nullable();
+                ])->default('sair')->nullable();
             $table->bigInteger('age')->nullable();
             $table->bigInteger('takhir')->nullable();
             $table->foreignId('resident_id')->constrained('residents')->onDelete('cascade');

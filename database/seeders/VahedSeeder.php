@@ -38,7 +38,7 @@ class VahedSeeder extends Seeder
             [
                 'id' => 4,
                 'name' => 'vahed4',
-                'hoverat' => 'طبقه جهارم',
+                'hoveat' => 'طبقه جهارم',
                 'created_at' => null,
                 'updated_at' => null
             ]
