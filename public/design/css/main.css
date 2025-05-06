@@ -313,3 +313,10 @@ div#header_otagh_4 {
   tr#tdreserve >td {
     background-color: #BDD2B6;
   }
+
+
+/* نمایش منو هنگام هاور روی آیتم */
+.nav-item:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* برای جلوگیری از فاصله */
+}

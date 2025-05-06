@@ -60,7 +60,7 @@ $(document).ready(function () {
             }
 
             $.ajax({
-                url: '/search',
+                url: '/search-menu',
                 method: 'GET',
                 data: { search: searchTerm },
                 success: function (residents) {

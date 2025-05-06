@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
+use App\Helpers\ShamsiHelper;
 use App\Models\Otagh;
 use App\Models\Resident;
 use App\Models\Takht;
@@ -9,7 +11,6 @@ use App\Services\DataServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-use function PHPUnit\Framework\isNull;
 
 class ResidentController extends Controller
 {
@@ -164,6 +165,7 @@ class ResidentController extends Controller
                 'full_name' => $request->full_name_add,
                 'phone' => $request->phone_add,
                 'end_date' => $request->end_date_add,
+                'start_date' => ShamsiHelper::toShamsi(now()),
                 'takht_id' => $takht->id,
                 'otagh_id' => $otagh->id,
                 'created_at ' => now(),

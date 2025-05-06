@@ -12,13 +12,13 @@
             </div>
             <!-- نتایج (مخفی در ابتدا) -->
 <div id="ajaxResults" style="display: none; position: absolute; z-index: 1000; background: white; border: 1px solid #ddd;border-radius: 25px"></div>
-        </div>
+</div>
         
         <!-- آیتم های منو -->
-        <div class="ms-auto">
+        {{-- <div class="ms-auto">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('sarch.showList')}}">سرچ</a>
+                    <a class="nav-link" href="{{ route('search.ends.showList')}}">سرچ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('thakts.show')}}">آمار تخت ها</a>
@@ -30,6 +30,37 @@
                     <a class="nav-link" href="{{ route('main')}}">صفحه اصلی</a>
                 </li>
             </ul>
+        </div> --}}
+        <div class="">
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('show.reservation') }}">رزرو کردن</a>
+                </li>
+                 <!-- Dropdown -->
+                 <li class="nav-item">
+                    <a class="nav-link ">
+                        گزارش‌ها
+                    </a>
+                    <ul class="dropdown-menu" >
+                        <li> <a class="nav-link" href="{{ route('search.ends.showList') }}">اقامتگران خروجی</a></li>
+                        <li> <a class="nav-link" href="{{ route('search.ends.showList') }}">اقامتگران خروجی</a></li>
+                    </ul>
+                </li>
+                   
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('thakts.show') }}">آمار تخت ها</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('list') }}">لیست اقامتگران</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('main') }}">صفحه اصلی</a>
+                </li>
+        
+               
+            </ul>
         </div>
+        
     </div>
 </nav>

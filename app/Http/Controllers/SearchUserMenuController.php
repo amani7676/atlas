@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Resident;
 use Illuminate\Http\Request;
 
-class SearchController extends Controller
+class SearchUserMenuController extends Controller
 {
     public function index(Request $request)
     {
@@ -30,10 +30,4 @@ class SearchController extends Controller
             
         return response()->json($residents);
     }
-
-    public function showList(Request $request)
-    {
-        return view('Search.SearchList');
-    }
-    
 }

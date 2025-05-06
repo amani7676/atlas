@@ -6,6 +6,12 @@ use App\Http\Controllers\ListController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SearchEndsController;
+use App\Http\Controllers\SearchUserController;
+use App\Http\Controllers\SearchUserMenuController;
+use App\Livewire\Reservations\Reserve;
+use App\Livewire\Search\ShowListEndsResidents;
+use App\Models\Reservation;
 use App\Models\Vahed;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
@@ -35,8 +41,6 @@ Route::post('/add_resident/', [ResidentController::class, 'AddResident'])->name(
 
 //امار تخت ها
 Route::get('/takhts-showList', [InfoTakhtController::class,'showList'])->name('thakts.show');
-Route::get('/search', [SearchController::class,'index'])->name('search');
-Route::get('/search-list-resident', [SearchController::class,'showList'])->name('sarch.showList');
 
 //softDelete and force resident
 Route::get('/forcedelete_resident/{id}', [ResidentController::class, 'ForceDelete'])->name('resident.forcedelete');
@@ -44,3 +48,12 @@ Route::get('/softdelete_resident/{id}', [ResidentController::class, 'SoftDelete'
 
 //change form and madrk
 Route::get('resident_change_fm/', action: [ResidentController::class, 'ChangeFM'])->name('change_madrak_form');
+
+
+
+Route::get('/search-menu', [SearchUserMenuController::class,'index'])->name('search.user.menu');
+
+
+// Route::get('/search-list-ends-resident', [SearchEndsController::class,'showList'])->name('search.ends.showList');
+Route::get('/search-list-ends-resident', ShowListEndsResidents::class)->name('search.ends.showList');
+Route::get('/reservation', Reserve::class)->name('show.reservation');

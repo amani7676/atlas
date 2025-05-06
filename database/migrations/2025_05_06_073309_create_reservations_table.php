@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('residents', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
-            $table->string(column: 'phone')->nullable();
-            $table->foreignId('takht_id');
-            $table->foreignId('otagh_id')->constrained('otaghs')->onDelete('cascade');
-            $table->stirng('start_date');
-            $table->string('end_date');
+            $table->string('name');
+            $table->string('phone');
+            $table->text('description')->nullable();
+            $table->enum('olaviat', ['low', 'medium', 'high'])->default('medium');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('residents');
+        Schema::dropIfExists('reservations');
     }
 };
