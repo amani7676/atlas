@@ -43,7 +43,7 @@
                         گزارش‌ها
                     </a>
                     <ul class="dropdown-menu" >
-                        <li> <a class="nav-link" href="{{ route('search.ends.showList') }}">اقامتگران خروجی</a></li>
+                        <li> <a class="nav-link" href="{{ route('search.showList') }}">اقامتگران</a></li>
                         <li> <a class="nav-link" href="{{ route('search.ends.showList') }}">اقامتگران خروجی</a></li>
                     </ul>
                 </li>

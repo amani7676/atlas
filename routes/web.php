@@ -11,6 +11,7 @@ use App\Http\Controllers\SearchUserController;
 use App\Http\Controllers\SearchUserMenuController;
 use App\Livewire\Reservations\Reserve;
 use App\Livewire\Search\ShowListEndsResidents;
+use App\Livewire\Search\ShowListResidents;
 use App\Models\Reservation;
 use App\Models\Vahed;
 use Illuminate\Routing\Route as RoutingRoute;
@@ -56,4 +57,5 @@ Route::get('/search-menu', [SearchUserMenuController::class,'index'])->name('sea
 
 // Route::get('/search-list-ends-resident', [SearchEndsController::class,'showList'])->name('search.ends.showList');
 Route::get('/search-list-ends-resident', ShowListEndsResidents::class)->name('search.ends.showList');
+Route::get('/search-list-resident', ShowListResidents::class)->name('search.showList');
 Route::get('/reservation', Reserve::class)->name('show.reservation');

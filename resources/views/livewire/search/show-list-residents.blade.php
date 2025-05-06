@@ -1,5 +1,6 @@
+
 <div class="text-center">
-    <h1>خروجی ها</h1>
+    
     <div class="p-4 rounded">
         <form id="filter-form" wire:submit.prevent="ShowList">
             <div class="d-flex flex-row">
@@ -14,6 +15,12 @@
                     <label class="text-sm font-medium">تلفن</label>
                     <input type="text" wire:model.lazy="phone" class="mt-1 w-full border rounded px-2 py-1"
                         placeholder="شماره تلفن">
+                </div>
+
+                <div class="p-2">
+                    <label class="text-sm font-medium">اتاق</label>
+                    <input type="text" wire:model.lazy="otagh" class="mt-1 w-full border rounded px-2 py-1"
+                        placeholder="شماره اتاق">
                 </div>
 
                 <div class="p-2">

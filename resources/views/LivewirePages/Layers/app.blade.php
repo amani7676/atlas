@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'قرارداد های پایان یافته')</title>
+    <title>{{ $title ?? 'گزارش های ' }}</title>
     @yield('styles')
     @include('base.header')
     @livewireStyles

@@ -21,6 +21,20 @@ class InfoResident extends Model
         'state',
         'created_at'
     ];
+    // در مدل InfoResident
+    public function getJobAttribute($value)
+    {
+        $jobs = [
+            'karmand_dolat' => 'کارمند دولت',
+            'karmand_shkhse' => 'کارمند شرکت خصوصی',
+            'daneshjo_azad' => 'دانشجوی دانشگاه آزاد',
+            'danshjo_dolati' => 'دانشجوی دانشگاه دولتی',
+            'danshjo_sair' => 'دانشجوی سایر مراکز',
+            'sair' => 'سایر'
+        ];
+
+        return $jobs[$value] ?? 'سایر';
+    }
     public function resident()
     {
         return $this->belongsTo(Resident::class);
