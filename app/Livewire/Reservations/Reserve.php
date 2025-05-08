@@ -30,7 +30,6 @@ class Reserve extends Component
 
         // اعتبارسنجی ساده (می‌تونی کامل‌ترش کنی)
         if (!empty($data['name']) && !empty($data['phone'])) {
-            // dd($this->priorityMap($data['ovlaviat']));
             $reservation = Reservation::create([
                 'name' => $data['name'],
                 'description' => $data['description'],
@@ -51,12 +50,7 @@ class Reserve extends Component
     }
     private function priorityMap($value)
     {
-        // dd(  match ($value) {
-        //     '1' => 'high',
-        //     '2' => 'medium',
-        //     '3' => 'low',
-        //     '' => 'medium',
-        // });
+
         // نگاشت عددی به مقدار ذخیره‌شده در دیتابیس
         return match ($value) {
             '1' => 'high',
@@ -93,9 +87,19 @@ class Reserve extends Component
         $this->savedReservations = array_values(array_filter($this->savedReservations, function ($item) use ($id) {
             return $item['id'] != $id;
         }));
+        $this->sortSavedReservations(); // اضافه کن
     }
+    private function sortSavedReservations()
+    {
+        usort($this->savedReservations, function ($a, $b) {
+            $priorityOrder = ['high' => 1, 'medium' => 2, 'low' => 3];
+            return $priorityOrder[$a['olaviat']] <=> $priorityOrder[$b['olaviat']];
+        });
+    }
+
     public function render()
     {
+        $this->sortSavedReservations(); // اضافه کن
         return view('livewire.reservations.reserve');
     }
 }
