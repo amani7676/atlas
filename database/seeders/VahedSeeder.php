@@ -17,7 +17,7 @@ class VahedSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => 'vahed1',
-                'hoverat' => 'طبقه اول',
+                'hoveat' => 'طبقه اول',
                 'created_at' => null,
                 'updated_at' => null
             ],

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string(column: 'phone')->nullable();
             $table->foreignId('takht_id');
             $table->foreignId('otagh_id')->constrained('otaghs')->onDelete('cascade');
-            $table->stirng('start_date');
+            $table->string('start_date');
             $table->string('end_date');
             $table->timestamps();
         });
