@@ -15,7 +15,11 @@
                     </tr>
                 </thead>
                 <tbody class="align-middle">
-                    
+                    @php
+                        usort($residents, function ($a, $b) {
+                            return $a['sarrsed'] <=> $b['sarrsed'];
+                        });
+                    @endphp
                     @foreach ($residents as $resident)
                         @php
                             $bedheyDescriptions = [];
@@ -26,7 +30,7 @@
                             }
 
                         @endphp
-                        @if (isset($resident['state']) && $resident['state'] == "leaving")
+                        @if (isset($resident['state']) && $resident['state'] == 'leaving')
                             <tr>
                                 <td>{{ $resident['otagh_name'] }}</td>
                                 <td>{{ $resident['full_name'] }}</td>
@@ -34,7 +38,7 @@
                                 <td>{{ $resident['end_date'] }}</td>
                                 <td>
                                     <span
-                                        class="badge text-bg-{{\App\Helpers\Helper::getSarrsedStatus($resident['sarrsed'])}}">{{ $resident['sarrsed'] }}
+                                        class="badge text-bg-{{ \App\Helpers\Helper::getSarrsedStatus($resident['sarrsed']) }}">{{ $resident['sarrsed'] }}
                                     </span>
                                 </td>
                                 <td>
@@ -58,7 +62,9 @@
                         @endif
                     @endforeach
                 </tbody>
+
             </table>
         </div>
+
     </div>
 </div>

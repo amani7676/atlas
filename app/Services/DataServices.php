@@ -6,6 +6,8 @@ use App\Models\Otagh;
 use App\Models\Resident;
 use App\Models\Vahed;
 use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Morilog\Jalali\Jalalian;
 use Spatie\Backtrace\Arguments\ReducedArgument\VariadicReducedArgument;
@@ -29,7 +31,7 @@ class DataServices
         $today = Jalalian::now()->toCarbon()->startOfDay();
 
         // محاسبه اختلاف روزها (با استفاده از timestamp)
-        $diffInSeconds =  $inputDate->getTimestamp() - $today->getTimestamp();
+        $diffInSeconds = $inputDate->getTimestamp() - $today->getTimestamp();
         $diffInDays = (int) floor($diffInSeconds / 86400); // 86400 ثانیه = 1 روز
 
         return $diffInDays;
@@ -55,6 +57,7 @@ class DataServices
                 $otaghData = [
                     'otagh_id' => $otagh->id,
                     'otagh_name' => $otagh->name,
+                    'otagh_total' => $otagh->total,
                     'otagh_vahedID' => $otagh->vahed_id,
                     'takhts' => [],
                 ];
@@ -143,6 +146,53 @@ class DataServices
 
         return $residents;
     }
+    public function getResidentsWithPagination($data, $perPage = 10, $page = null)
+    {
+        $residents = [];
+
+        foreach ($data as $vahed) {
+            foreach ($vahed['otaghs'] as $otagh) {
+                foreach ($otagh['takhts'] as $takht) {
+                    if (!empty($takht['resident'])) {
+                        $resident = $takht['resident'];
+                        $description = $this->getDescription($resident['resident_id']);
+
+                        $flattened = [
+                            'resident_id' => $resident['resident_id'],
+                            'full_name' => $resident['full_name'],
+                            'phone' => $resident['phone'],
+                            'start_date' => $resident['start_date'],
+                            'descriptions' => $description,
+                            'end_date' => $resident['end_date'],
+                            'otagh_name' => $otagh['otagh_name'],
+                            'sarrsed' => $this->getDaysDiffJalali($resident['end_date']),
+                        ];
+
+                        if (!empty($resident['info'])) {
+                            $flattened = array_merge($flattened, $resident['info']);
+                        }
+
+                        $residents[] = $flattened;
+                    }
+                }
+            }
+        }
+
+        // ایجاد صفحه‌بندی دستی
+        $page = $page ?: Paginator::resolveCurrentPage() ?: 1;
+        $paginatedResidents = new LengthAwarePaginator(
+            array_slice($residents, ($page - 1) * $perPage, $perPage),
+            count($residents),
+            $perPage,
+            $page,
+            [
+                'path' => Paginator::resolveCurrentPath(),
+                'query' => request()->query()
+            ]
+        );
+
+        return $paginatedResidents;
+    }
 
     public function getDescription($idResident)
     {
@@ -168,11 +218,11 @@ class DataServices
             ->whereIn('id', $residentIds)
             ->get();
 
-            foreach ($residentModels as $resident) {
-                $descriptions = $resident->descriptions->isNotEmpty() 
-                                ? $resident->descriptions->toArray() 
-                                : null;
-            }
+        foreach ($residentModels as $resident) {
+            $descriptions = $resident->descriptions->isNotEmpty()
+                ? $resident->descriptions->toArray()
+                : null;
+        }
 
         foreach ($residentModels as $resident) {
             $flattened = [
@@ -195,22 +245,23 @@ class DataServices
         return $residents;
     }
 
-    public function getVahedPerTotalOtaghs() {
+    public function getVahedPerTotalOtaghs()
+    {
         // لود اتاقها و تختهای مرتبط با وضعیت آنها
         $vaheds = Vahed::with(['otaghs.takhts'])->get();
-    
+
         $result = [];
         foreach ($vaheds as $vahed) {
             $vahedData = [
                 'vahed' => $vahed->id,
                 'otaghs' => []
             ];
-    
+
             $takhtGroups = [];
             foreach ($vahed->otaghs as $otagh) {
                 // گروهبندی اتاقها بر اساس تعداد تخت (فیلد total)
                 $type = $otagh->total . ' تخت';
-                
+
                 if (!isset($takhtGroups[$type])) {
                     $takhtGroups[$type] = [
                         'total_otaghs' => 0,
@@ -222,36 +273,37 @@ class DataServices
                         ]
                     ];
                 }
-    
+
                 // شمارش اتاقها و تختها
                 $takhtGroups[$type]['total_otaghs']++;
                 $takhtGroups[$type]['total_takhts'] += $otagh->total;
-    
+
                 // شمارش وضعیت تختهای این اتاق
                 foreach ($otagh->takhts as $takht) {
                     $state = $takht->state;
                     $takhtGroups[$type]['states'][$state]++;
                 }
             }
-    
+
             $vahedData['otaghs'] = $takhtGroups;
             $result[] = $vahedData;
         }
-    
+
         return $result;
     }
 
-    public function getTotalPerVahed() {
+    public function getTotalPerVahed()
+    {
         // لود تمام دادههای مرتبط (اتاقها و تختها)
         $vaheds = Vahed::with(['otaghs.takhts'])->get();
-    
+
         $result = [];
         foreach ($vaheds as $vahed) {
             $totalTakhts = 0;
             $emptyCount = 0;
             $fullCount = 0;
             $reserveCount = 0;
-    
+
             // محاسبه مجموع تختها و وضعیتها برای واحد جاری
             foreach ($vahed->otaghs as $otagh) {
                 foreach ($otagh->takhts as $takht) {
@@ -269,7 +321,7 @@ class DataServices
                     }
                 }
             }
-    
+
             // افزودن دادهها به نتیجه
             $result[] = [
                 "vahed" => $vahed->id,
@@ -281,19 +333,20 @@ class DataServices
                 ]
             ];
         }
-    
+
         return $result;
     }
 
-    public function getTotalTakhtsPerNumbers() {
+    public function getTotalTakhtsPerNumbers()
+    {
         // لود تمام اتاقها و تختهای مرتبط
         $otaghs = Otagh::with('takhts')->get();
-    
+
         $result = [];
         foreach ($otaghs as $otagh) {
             // تشخیص نوع اتاق بر اساس تعداد تخت (فیلد total)
             $type = $otagh->total . ' تخت';
-    
+
             // اگر گروه وجود ندارد، آن را ایجاد کن
             if (!isset($result[$type])) {
                 $result[$type] = [
@@ -303,7 +356,7 @@ class DataServices
                     'reserve' => 0
                 ];
             }
-    
+
             // شمارش وضعیت تختهای این اتاق
             foreach ($otagh->takhts as $takht) {
                 $result[$type]['all']++;
@@ -320,7 +373,7 @@ class DataServices
                 }
             }
         }
-    
+
         return $result;
     }
 }
