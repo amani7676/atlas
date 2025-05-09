@@ -5,7 +5,9 @@
             <table class="table  table-hover ">
                 <thead class="align-middle  table-secondary">
                     <tr>
-                        <th>اتاق</th>
+                         <th>#</th>
+                         <th>اتاق</th>
+                         <th>شماره تخت ـــ کل اتاق</th>
                         <th>نام</th>
                         <th>تلفن</th>
                         <th>سررسید</th>
@@ -15,7 +17,9 @@
                     </tr>
                 </thead>
                 <tbody class="align-middle">
-                    
+                    @php
+                        $counter = 1;
+                    @endphp
                     @foreach ($residents as $resident)
                         @php
                             $bedheyDescriptions = [];
@@ -24,12 +28,14 @@
                                     $bedheyDescriptions[] = $description['desc'];
                                 }
                             }
-                            
+
                         @endphp
-                        
+
                         @if (isset($resident['state']) && $resident['state'] == "reserve")
                             <tr>
-                                <td>{{ $resident['otagh_name'] }}</td>
+                               <td class="text-primary" style="font-size: 12px">{{ $counter }}</td>
+                                 <td>{{ $resident['otagh_name'] }}</td>
+                                 <td>{{ $resident['otagh_total'] }}___{{ $resident['takht_name'] }}</td>
                                 <td>{{ $resident['full_name'] }}</td>
                                 <td>{{ $resident['phone'] }}</td>
                                 <td>{{ $resident['end_date'] }}</td>
@@ -56,6 +62,9 @@
                                     </a>
                                 </td>
                             </tr>
+                            @php
+                                $counter ++;
+                            @endphp
                         @endif
                     @endforeach
                 </tbody>

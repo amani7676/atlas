@@ -132,6 +132,8 @@ class DataServices
                             'end_date' => $resident['end_date'],
                             'otagh_name' => $otagh['otagh_name'],
                             'sarrsed' => $this->getDaysDiffJalali($resident['end_date']),
+                            'otagh_total' => $otagh['otagh_total'],
+                            'takht_name' =>  explode('_', $takht['takht_name'])[1]
                         ];
 
                         if (!empty($resident['info'])) {
