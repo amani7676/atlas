@@ -85,13 +85,13 @@
                                                     <div class="d-flex flex-wrap gap-3">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
-                                                                id="ejareh_add" name="ejareh_add">
+                                                                id="ejareh_add" name="ejareh_add" checked>
                                                             <label class="form-check-label"
                                                                 for="ejareh_add">اجاره</label>
                                                         </div>
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
-                                                                id="vadeh_add" name="vadeh_add">
+                                                                id="vadeh_add" name="vadeh_add" checked>
                                                             <label class="form-check-label"
                                                                 for="vadeh_add">ودیعه</label>
                                                         </div>
@@ -145,7 +145,7 @@
                                                     <i class="bi bi-save"></i> ذخیره اطلاعات
                                                 </button>
                                             </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +153,7 @@
                     </form>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>

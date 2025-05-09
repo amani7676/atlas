@@ -59,3 +59,4 @@ Route::get('/search-menu', [SearchUserMenuController::class,'index'])->name('sea
 Route::get('/search-list-ends-resident', ShowListEndsResidents::class)->name('search.ends.showList');
 Route::get('/search-list-resident', ShowListResidents::class)->name('search.showList');
 Route::get('/reservation', Reserve::class)->name('show.reservation');
+

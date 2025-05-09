@@ -15,7 +15,13 @@
                     @php
                         $counter = 0;
                     @endphp
+
                     @foreach ($data as $vaheds)
+                    @php
+                    usort($vaheds['otaghs'], function ($a, $b) {
+                        return $b['otagh_total'] <=> $a['otagh_total'];
+                    });
+                @endphp
                         @foreach ($vaheds['otaghs'] as $otaghs)
                             @foreach ($otaghs['takhts'] as $takhts)
                                 @if ($takhts['state'] == 'empty' && $counter < 15)
@@ -38,7 +44,7 @@
                             @endforeach
                         @endforeach
                     @endforeach
-                   
+
                 </tbody>
             </table>
             @if ($counter >= 10)

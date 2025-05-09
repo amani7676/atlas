@@ -3,8 +3,10 @@
 namespace App\Livewire\Search;
 
 use App\Models\Resident;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use TCPDF;
 
 #[Title('گزارش اقامتگران')]
 class ShowListResidents extends Component
@@ -42,9 +44,9 @@ class ShowListResidents extends Component
         }
 
         // تبدیل به عدد و حذف صفرهای اضافی
-        $year = (int)$parts[0];
-        $month = (int)$parts[1];
-        $day = (int)$parts[2];
+        $year = (int) $parts[0];
+        $month = (int) $parts[1];
+        $day = (int) $parts[2];
 
         // ذخیره به فرمت 1404/2/1
         $this->$field = "$year/$month/$day";
@@ -57,8 +59,6 @@ class ShowListResidents extends Component
     {
         $this->reset(['full_name', 'phone', 'otagh', 'start_date', 'start_date_ta', 'end_date_ta', 'end_date', 'age', 'job']);
     }
-
-    #[Title('Create Post')]
     public function render()
     {
 
@@ -126,6 +126,7 @@ class ShowListResidents extends Component
             ->get();
 
 
+   
         return view('livewire.search.show-list-residents', [
             'residents' => $residents
         ]);

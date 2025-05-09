@@ -8,9 +8,10 @@ use App\Models\Otagh;
 use App\Models\Resident;
 use App\Models\Takht;
 use App\Services\DataServices;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use TCPDF;
 
 class ResidentController extends Controller
 {
@@ -50,7 +51,7 @@ class ResidentController extends Controller
         ]);
         // دریافت داده‌های تازه از دیتابیس
         $updatedResident = $resident->fresh();
-        $result =  $this->getResidentById->getResidentsByIds([$updatedResident->id]);
+        $result = $this->getResidentById->getResidentsByIds([$updatedResident->id]);
         if (!is_array($result) || empty($result)) {
             return response()->json([
                 'type' => 'error',
@@ -245,15 +246,17 @@ class ResidentController extends Controller
 
     public function ChangeFM(Request $request)
     {
-        
+
         // یافتن رزیدنت و اطلاعات مرتبط
         $resident = Resident::findOrFail($request->id);
-        if($resident){
+        if ($resident) {
             $resident->infoResident()->update([
                 $request->name => 1
             ]);
         }
-        emotify('success', ''.$request->getScriptName.' دریافت شد');
+        emotify('success', '' . $request->getScriptName . ' دریافت شد');
         return redirect()->back();
     }
+
+    
 }
