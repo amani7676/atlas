@@ -1,6 +1,6 @@
 
 <div class="text-center">
-    
+
     <div class="p-4 rounded">
         <form id="filter-form" wire:submit.prevent="ShowList">
             <div class="d-flex flex-row">
@@ -62,7 +62,7 @@
                         <option value="sair">سایر</option>
                     </select>
                 </div>
-                
+
                 <div class="p-2 mt-4">
                     <button type="submit" class="btn btn-info">پیدا کن</button>
                     <button type="button" wire:click="resetFilters" class="btn btn-danger mt-4">پاک کردن فیلترها</button>
@@ -72,7 +72,7 @@
     </div>
 
     <div id="resident-list" class="space-y-3 mt-4 container">
-      
+
         @if($residents->count())
             <table class=" table table-hover">
                 <thead class="bg-gray-50">

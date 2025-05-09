@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\DescriptionsController;
 use App\Http\Controllers\InfoTakhtController;
-use App\Http\Controllers\ListController; 
+use App\Http\Controllers\ListController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\SearchController;
@@ -59,3 +59,4 @@ Route::get('/search-menu', [SearchUserMenuController::class,'index'])->name('sea
 Route::get('/search-list-ends-resident', ShowListEndsResidents::class)->name('search.ends.showList');
 Route::get('/search-list-resident', ShowListResidents::class)->name('search.showList');
 Route::get('/reservation', Reserve::class)->name('show.reservation');
+
