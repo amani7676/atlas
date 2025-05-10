@@ -12,6 +12,9 @@
             $('input[name="takht_name_add"]').val(takhtId);
             $('input[name="otagh_name_add"]').val(otaghId);
         });
+        $(document).ready(function() {
+                $('#searchableSelect').select2();
+            });
 
     </script>
 @endpush

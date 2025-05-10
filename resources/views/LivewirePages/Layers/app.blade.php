@@ -7,7 +7,6 @@
     <title>{{ $title ?? 'گزارش های ' }}</title>
     @yield('styles')
     @include('base.header')
-    @livewireStyles
 </head>
 
 <body>
@@ -18,9 +17,8 @@
     </div>
     @yield('footer')
     @include('base.footer')
-
+   
     @stack('scripts')
-    @livewireScripts
 </body>
 
 </html>

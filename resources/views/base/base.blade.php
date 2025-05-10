@@ -20,7 +20,7 @@
     @include('list.components.modal-add-resident')
     @include('components.modal-add-resident-js')
 
-    @stack('scripts')
+     @stack('scripts')
 </body>
 
 </html>

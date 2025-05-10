@@ -9,6 +9,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchEndsController;
 use App\Http\Controllers\SearchUserController;
 use App\Http\Controllers\SearchUserMenuController;
+use App\Livewire\Changestatus\TakhtOtagh;
 use App\Livewire\Reservations\Reserve;
 use App\Livewire\Search\ShowListEndsResidents;
 use App\Livewire\Search\ShowListResidents;
@@ -59,4 +60,7 @@ Route::get('/search-menu', [SearchUserMenuController::class,'index'])->name('sea
 Route::get('/search-list-ends-resident', ShowListEndsResidents::class)->name('search.ends.showList');
 Route::get('/search-list-resident', ShowListResidents::class)->name('search.showList');
 Route::get('/reservation', Reserve::class)->name('show.reservation');
+
+
+Route::get('/moving', TakhtOtagh::class)->name('moving.resident');
 
