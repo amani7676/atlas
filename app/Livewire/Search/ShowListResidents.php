@@ -122,11 +122,11 @@ class ShowListResidents extends Component
                 });
             })
 
-            ->orderBy('deleted_at', 'desc')
+            ->orderBy('takht_id', 'asc')
             ->get();
 
 
-   
+
         return view('livewire.search.show-list-residents', [
             'residents' => $residents
         ]);

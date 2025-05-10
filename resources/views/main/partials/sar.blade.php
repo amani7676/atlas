@@ -5,7 +5,9 @@
              <table class="table  table-hover ">
                  <thead class="align-middle  table-secondary" id="">
                      <tr>
+                         <th>#</th>
                          <th>اتاق</th>
+                         <th>شماره تخت ـــ کل اتاق</th>
                          <th>نام</th>
                          <th>تلفن</th>
                          <th>سررسید</th>
@@ -15,11 +17,13 @@
                      </tr>
                  </thead>
                  <tbody class="align-middle">
-                    @php
-                            usort($residents, function ($a, $b) {
-                                 return $b['sarrsed'] <=> $a['sarrsed'];
-                             });
-                    @endphp
+                     @php
+                         $counter = 1;
+                         usort($residents, function ($a, $b) {
+                             return $b['sarrsed'] <=> $a['sarrsed'];
+                         });
+                     @endphp
+
                      @foreach ($residents as $resident)
                          @php
 
@@ -32,7 +36,9 @@
                          @endphp
                          @if ($resident['sarrsed'] <= 0 && ($resident['state'] == 'active' || $resident['state'] == 'leaving'))
                              <tr>
+                                 <td class="text-primary" style="font-size: 12px">{{ $counter }}</td>
                                  <td>{{ $resident['otagh_name'] }}</td>
+                                 <td>{{ $resident['otagh_total'] }}___{{ $resident['takht_name'] }}</td>
                                  <td>{{ $resident['full_name'] }}</td>
                                  <td>{{ $resident['phone'] }}</td>
                                  <td>{{ $resident['end_date'] }}</td>
@@ -50,7 +56,7 @@
                                      @endforeach
                                  </td>
                                  <td>
-                                     <a href="{{ route('list') }}#{{ $resident['otagh_name'] }}" class="">
+                                     <a href="{{ route('list') }}#{{ $resident['otagh_name'] }}" target="_blank">
                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
                                              <path
@@ -59,6 +65,10 @@
                                      </a>
                                  </td>
                              </tr>
+
+                             @php
+                                 $counter++;
+                             @endphp
                          @endif
                      @endforeach
 

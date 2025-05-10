@@ -22,13 +22,16 @@ class TakhtOtagh extends Component
         // دریافت لیست residents هنگام لود صفحه
         $this->loadResidents();
         $this->loadTakht();
+        
     }
 
     public function loadResidents()
     {
-        $this->residents = Resident::query()
-            ->select('id', 'full_name')
-            ->orderBy('otagh_id')
+
+        $this->residents = DB::table('residents')
+            ->join('otaghs', 'residents.otagh_id', '=', 'otaghs.id')
+            ->select('residents.id', 'residents.full_name', 'otaghs.name as otagh_name')
+            ->orderBy('residents.otagh_id')
             ->get()
             ->toArray();
     }
@@ -54,11 +57,12 @@ class TakhtOtagh extends Component
     // برای تخت
     public function loadTakht()
     {
-        $this->takhts = Takht::query()
-            ->select('id', 'name')
+        $this->takhts = Takht::with('resident:id,full_name,takht_id')
+            ->select('id', 'name') // اگر name در جدول takhts هست
             ->orderBy('id')
             ->get()
             ->toArray();
+
     }
     public function handleSelectChangeTakht($takhtId)
     {
@@ -109,13 +113,13 @@ class TakhtOtagh extends Component
                 }
                 session()->flash(key: 'success', value: 'کاربر فلانی به اتاق خالی فلانی جابجا شد');
                 $takhtB->save();
-                
+
                 return;
 
-                
+
             } else if ($this->takhtDetails->state == 'full' || $this->takhtDetails->state == 'reserve') {
 
-                
+
                 $residentB = Resident::with(['infoResident'])->find($takhtB->resident->id);
 
                 // تخت و اتاق فعلی residentA
@@ -134,9 +138,9 @@ class TakhtOtagh extends Component
                     $residentA->otagh_id = $otaghB_id;
                     $residentA->save();
                     //takhtb
-                    if($residentA->infoResident->state == 'full' || $residentA->infoResident->state == 'leaving'){
+                    if ($residentA->infoResident->state == 'full' || $residentA->infoResident->state == 'leaving') {
                         $takhtB->state = "full";
-                    }else{
+                    } else {
                         $takhtB->state = 'reserve';
                     }
                     $takhtB->save();
@@ -146,9 +150,9 @@ class TakhtOtagh extends Component
                         $residentB->otagh_id = $otaghA_id;
                         $residentB->save();
                         //takhtA
-                        if($residentB->infoResident->state == 'full' || $residentB->infoResident->state == 'leaving'){
+                        if ($residentB->infoResident->state == 'full' || $residentB->infoResident->state == 'leaving') {
                             $takhtA->state = "full";
-                        }else{
+                        } else {
                             $takhtA->state = 'reserve';
                         }
                         $takhtA->save();
