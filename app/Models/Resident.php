@@ -31,23 +31,27 @@ class Resident extends Model
         }
 
         // تبدیل به عدد و حذف صفرهای اضافی
-        $year = (int)$parts[0];
-        $month = (int)$parts[1];
-        $day = (int)$parts[2];
+        $year = (int) $parts[0];
+        $month = (int) $parts[1];
+        $day = (int) $parts[2];
 
         return "$year/$month/$day";
     }
-     // Mutator برای start_date
-     public function setStartDateAttribute($value)
-     {
-         $this->attributes['start_date'] = $this->standardizeJalaliDate($value);
-     }
- 
-     // Mutator برای end_date
-     public function setEndDateAttribute($value)
-     {
-         $this->attributes['end_date'] = $this->standardizeJalaliDate($value);
-     }
+    // Mutator برای start_date
+    public function setStartDateAttribute($value)
+    {
+        $this->attributes['start_date'] = $this->standardizeJalaliDate($value);
+    }
+
+    // Mutator برای end_date
+    public function setEndDateAttribute($value)
+    {
+        $this->attributes['end_date'] = $this->standardizeJalaliDate($value);
+    }
+    public function getPhoneAttribute()
+    {
+        return preg_replace('/^(\d{4})(\d{3})(\d{4})$/', '$1-$2-$3',  $this->attributes['phone']);
+    }
     public function infoResident()
     {
         return $this->hasOne(InfoResident::class);

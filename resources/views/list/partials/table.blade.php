@@ -40,14 +40,14 @@
                     </td>
                 </tr>
             @else
-               
+
                 <tr data-resident-id="{{ $takhts['resident']['resident_id'] }}"
                  id="{{ isset($takhts['resident']['info']['state']) ? \App\Helpers\Helper::ColorStateTd($takhts['resident']['info']['state']) : '' }}"
-                 
+
                 >
                     <td id="takht_name" >
                         {{ substr($takhts['takht_name'], -1) }}
-                    </td> 
+                    </td>
                     <td>
                         <input type="text" name="full_name" class="form-control"
                             value="{{ $takhts['resident']['full_name'] }}">

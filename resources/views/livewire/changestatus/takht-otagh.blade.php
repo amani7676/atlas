@@ -15,7 +15,8 @@
                 <select wire:change="handleSelectChange($event.target.value)" id="resident-select" class="form-control">
                     <option value="">انتخاب کنید...</option>
                     @foreach ($residents as $resident)
-                        <option value="{{ $resident['id'] }}">{{ $resident['full_name'] }}</option>
+
+                        <option value="{{ $resident->id }}">{{ $resident ->otagh_name }}__{{ $resident->full_name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -28,13 +29,13 @@
                         @if ($residentDetails)
                             <div class="row">
                                 <div class="col-3">
-                                    <p><span class="font-">نام:</span> {{ $residentDetails['full_name'] }}</p>
-                                    <p><span class="font-">شماره تخت</span> {{ $residentDetails['takht_name'] }}
+                                    <p class="h6"><span class="font-">نام:</span> {{ $residentDetails['full_name'] }}</p>
+                                    <p class="h6"><span class="font-">شماره تخت</span> {{ $residentDetails['takht_name'] }}
                                     </p>
                                 </div>
                                 <div class="col-3">
-                                    <p><span class="font-">اتاق:</span> {{ $residentDetails['otagh_name'] }}</p>
-                                    <p><span class="font-">اتاق:</span> {{ $residentDetails['takht_name'] }}</p>
+                                    <p class="h6"><span class="font-">اتاق:</span> {{ $residentDetails['otagh_name'] }}</p>
+                                    <p class="h6"><span class="font-">اتاق:</span> {{ $residentDetails['takht_name'] }}</p>
                                 </div>
                             </div>
                         @endif
@@ -52,7 +53,8 @@
                     class="form-control">
                     <option value="">انتخاب کنید...</option>
                     @foreach ($takhts as $takht)
-                        <option value="{{ $takht['id'] }}">{{ $takht['name'] }}</option>
+
+                        <option value="{{ $takht['id'] }}" class="{{ $takht['resident'] ? '' : 'bg-warning fw-bold' }}">{{ $takht['resident']['full_name'] ?? 'خالی' }}__{{ $takht['name'] }}</option>
                     @endforeach
                 </select>
             </div>
@@ -67,14 +69,14 @@
                             {{-- {{ dd($takhtDetails->state) }} --}}
                             <div class="row">
                                 <div class="col-3">
-                                    <p><span class="font-">اتاق:</span> {{ $takhtDetails->otagh->name }}</p>
-                                    <p><span class="font-">شماره تخت</span> {{ $takhtDetails->name }}</p>
+                                    <p class="h6"><span class="font-">اتاق:</span> {{ $takhtDetails->otagh->name }}</p>
+                                    <p class="h6"><span class="font-">شماره تخت</span> {{ $takhtDetails->name }}</p>
                                 </div>
                                 @if ($takhtDetails->state == 'reserve' || $takhtDetails->state == 'full')
                                     <div class="col-3">
-                                        <p><span class="font-">نام: {{ $takhtDetails->resident->full_name }}</span>
+                                        <p class="h6"><span class="font-">نام: {{ $takhtDetails->resident->full_name }}</span>
                                         </p>
-                                        <p><span class="font-">اتاق:</span> </p>
+                                        <p class="h6"><span class="font-">اتاق:</span> </p>
                                     </div>
                                 @else
                                     <div class="col-3">
