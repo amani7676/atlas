@@ -14,6 +14,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.6",
+        "masmerise/livewire-toaster": "^2.1",
         "mckenziearts/laravel-notify": "*",
         "morilog/jalali": "3.*"
     },

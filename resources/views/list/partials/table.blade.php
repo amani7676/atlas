@@ -40,16 +40,11 @@
                     </td>
                 </tr>
             @else
-                {{-- @php
-                    $color_state = null;
-                    if ($takhts['resident']['info']['state'] == 'reserve') {
-                        $color_state = '';
-                    } elseif ($takhts['resident']['info']['state'] == 'leaving') {
-                        $color_state = '';
-                    }
-                @endphp --}}
+               
                 <tr data-resident-id="{{ $takhts['resident']['resident_id'] }}"
-                 id="{{ isset($takhts['resident']['info']['state']) ? \App\Helpers\Helper::ColorStateTd($takhts['resident']['info']['state']) : '' }}">
+                 id="{{ isset($takhts['resident']['info']['state']) ? \App\Helpers\Helper::ColorStateTd($takhts['resident']['info']['state']) : '' }}"
+                 
+                >
                     <td id="takht_name" >
                         {{ substr($takhts['takht_name'], -1) }}
                     </td> 
@@ -112,7 +107,6 @@
                 </tr>
             @endif
         @endforeach
-
 
     </tbody>
 </table>

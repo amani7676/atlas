@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Otagh;
 use App\Models\Resident;
+use App\Models\Takht;
 use App\Models\Vahed;
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -209,12 +210,48 @@ class DataServices
             ];
         })->toArray();
     }
+    // public function getResidentsByIds(array $residentIds)
+    // {
+    //     $residents = [];
+
+    //     // بگیریم همه ریزیدنت‌ها با روابط مربوط
+    //     $residentModels = Resident::with(['infoResident', 'descriptions'])
+    //         ->whereIn('id', $residentIds)
+    //         ->get();
+
+    //     foreach ($residentModels as $resident) {
+    //         $descriptions = $resident->descriptions->isNotEmpty()
+    //             ? $resident->descriptions->toArray()
+    //             : null;
+    //     }
+
+    //     foreach ($residentModels as $resident) {
+    //         $flattened = [
+    //             'resident_id' => $resident->id,
+    //             'full_name' => $resident->full_name,
+    //             'phone' => $resident->phone,
+    //             'start_date' => $resident->start_date,
+    //             'end_date' => $resident->end_date,
+    //             'descriptions' => $descriptions, // مثلا فقط متن دیسکریپشن‌ها
+    //             'sarrsed' => $this->getDaysDiffJalali($resident->end_date),
+    //         ];
+
+    //         if ($resident->infoResident) {
+    //             $flattened = array_merge($flattened, $resident->infoResident->toArray());
+    //         }
+
+    //         $residents[] = $flattened;
+    //     }
+
+    //     return $residents;
+    // }
+
+
     public function getResidentsByIds(array $residentIds)
     {
         $residents = [];
 
-        // بگیریم همه ریزیدنت‌ها با روابط مربوط
-        $residentModels = Resident::with(['infoResident', 'descriptions'])
+        $residentModels = Resident::with(['infoResident', 'descriptions', 'takht.otagh'])
             ->whereIn('id', $residentIds)
             ->get();
 
@@ -222,17 +259,17 @@ class DataServices
             $descriptions = $resident->descriptions->isNotEmpty()
                 ? $resident->descriptions->toArray()
                 : null;
-        }
-
-        foreach ($residentModels as $resident) {
             $flattened = [
                 'resident_id' => $resident->id,
                 'full_name' => $resident->full_name,
                 'phone' => $resident->phone,
                 'start_date' => $resident->start_date,
                 'end_date' => $resident->end_date,
-                'descriptions' => $descriptions, // مثلا فقط متن دیسکریپشن‌ها
+                'descriptions' => $descriptions,
                 'sarrsed' => $this->getDaysDiffJalali($resident->end_date),
+                'takht_total' => $resident->takht->otagh->total,
+                'otagh_name' => $resident->takht->otagh->name,
+                'takht_name' => $resident->takht->name,
             ];
 
             if ($resident->infoResident) {
@@ -244,7 +281,16 @@ class DataServices
 
         return $residents;
     }
+    function getFullTakhtDetails($takhtId)
+    {
+        $takht = Takht::with([
+            'otagh.vahed',          // اتاق و واحدش
+            'resident.infoResident', // ساکن و اطلاعاتش
+          
+        ])->find($takhtId);
 
+        return $takht;
+    }
     public function getVahedPerTotalOtaghs()
     {
         // لود اتاقها و تختهای مرتبط با وضعیت آنها
@@ -377,4 +423,3 @@ class DataServices
         return $result;
     }
 }
-
