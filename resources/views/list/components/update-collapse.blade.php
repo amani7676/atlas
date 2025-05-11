@@ -83,6 +83,7 @@
                                         <option value="active">فعال</option>
                                         <option value="leaving">در حال خروج</option>
                                         <option value="reserve">رزرو</option>
+                                        <option value="nightly">شبانه</option>
                                     </select>
                                 </div>
 

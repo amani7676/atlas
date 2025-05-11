@@ -50,6 +50,7 @@
                                                         <option selected disabled value="">انتخاب کنید...</option>
                                                         <option value="active">فعال</option>
                                                         <option value="reserve">رزرو</option>
+                                                        <option value="nightly">شبانه</option>
                                                         <option value="leaving">خروج خواهد کرد</option>
                                                         <option value="exit">خروج</option>
                                                     </select>

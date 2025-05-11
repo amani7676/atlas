@@ -122,6 +122,10 @@ class ResidentController extends Controller
             $takht->update([
                 'state' => 'reserve'
             ]);
+        }else if($request->state_collapse == 'nightly'){
+            $takht->update([
+                'state' => 'full'
+            ]);
         }
 
         notify()->success('مشخصات ' . $resident->full_name . ' تغییر یافت');
@@ -195,6 +199,9 @@ class ResidentController extends Controller
                 $takht->save();
             } else if ($request->state_add == 'reserve') {
                 $takht->state = 'reserve'; // مقدار جدید برای وضعیت
+                $takht->save();
+            }else if($request->state_add == 'nightly'){
+                $takht->state = 'full'; // مقدار جدید برای وضعیت
                 $takht->save();
             }
 

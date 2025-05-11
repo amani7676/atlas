@@ -19,7 +19,7 @@ return new class extends Migration
             $table->boolean('bedehy')->default(0);
             $table->boolean('form')->default(0);
             $table->date('hamahang')->nullable();
-            $table->enum('state', ['active', 'reserve','leaving' ,'exit'])->default('active');
+            $table->enum('state', ['active', 'reserve','leaving' ,'exit', 'nightly'])->default('active');
             $table->enum('job', [
                 'karmand_dolat', 'karmand_shkhse','daneshjo_azad' ,'danshjo_dolati','danshjo_sair','sair'
                 ])->default('sair')->nullable();
