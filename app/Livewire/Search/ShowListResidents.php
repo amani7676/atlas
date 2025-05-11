@@ -3,10 +3,9 @@
 namespace App\Livewire\Search;
 
 use App\Models\Resident;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Attributes\Title;
 use Livewire\Component;
-use TCPDF;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
 
 #[Title('گزارش اقامتگران')]
 class ShowListResidents extends Component
@@ -124,8 +123,7 @@ class ShowListResidents extends Component
 
             ->orderBy('takht_id', 'asc')
             ->get();
-
-
+       
 
         return view('livewire.search.show-list-residents', [
             'residents' => $residents

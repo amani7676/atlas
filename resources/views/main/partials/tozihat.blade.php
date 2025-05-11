@@ -39,7 +39,7 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <a href="#" class="text-success">
+                                    <a href="#" class="text-success"  target="_blank">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                             fill="currentColor" class="bi bi-credit-card-2-front-fill"
                                             viewBox="0 0 16 16">

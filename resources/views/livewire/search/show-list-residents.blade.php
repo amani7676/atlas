@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12">
-         <div class="p-4 rounded">
+        <div class="p-4 rounded">
             <form id="filter-form" wire:submit.prevent="ShowList">
                 <div class="d-flex flex-row">
                     <!-- متن -->
@@ -71,8 +71,12 @@
                         <button type="button" wire:click="resetFilters" class="btn btn-danger mt-4">پاک کردن
                             فیلترها</button>
                     </div>
+
                 </div>
             </form>
+        </div>
+        <div class=" d-flex justify-content-center align-items-center">
+            <a class="gradient-hover p-3" href="{{ route('report.pdf.residents') }}" >PDF</a>
         </div>
     </div>
     <div class="col-11 text-center">

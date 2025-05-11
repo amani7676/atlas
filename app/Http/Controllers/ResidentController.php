@@ -11,6 +11,7 @@ use App\Services\DataServices;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
 use TCPDF;
 
 class ResidentController extends Controller
@@ -136,6 +137,8 @@ class ResidentController extends Controller
 
     public function AddResident(Request $request)
     {
+        $phone_add = str_replace("-","",$request->phone_add);
+
         // بررسی وجود کاربر با نام یا تلفن یکسان
         $existingUser = Resident::where('full_name', $request->full_name_add)
             ->first();
@@ -168,7 +171,7 @@ class ResidentController extends Controller
         try {
             $data = Resident::create([
                 'full_name' => $request->full_name_add,
-                'phone' => $request->phone_add,
+                'phone' => $phone_add,
                 'end_date' => $request->end_date_add,
                 'start_date' => ShamsiHelper::toShamsi(now()),
                 'takht_id' => $takht->id,
@@ -265,5 +268,29 @@ class ResidentController extends Controller
         return redirect()->back();
     }
 
-    
+    public function reportPdf()
+    {
+        $data = $this->getResidentById->getAllData();
+        // تنظیمات PDF برای پشتیبانی از فارسی
+        $config = [
+            'mode' => 'utf-8',
+            'format' => 'A4',
+            'margin_header' => 0,
+            'margin_footer' => 0,
+            'margin_top' => 25,
+            'margin_bottom' => 25,
+            'margin_left' => 15,
+            'margin_right' => 15,
+            'default_font_size' => 12,
+            'default_font' => 'vazir',
+            'orientation' => 'P',
+            'direction' => 'rtl', // تنظیم جهت راست به چپ
+            'tempDir' => storage_path('app/mpdf')
+        ];
+        $pdf = LaravelMpdf::loadView('other.pdf.listallresidents', ['data' => $data], [], $config);
+                // برای دانلود مستقیم
+        return $pdf->download('گزارش.pdf');
+    }
+
+
 }
