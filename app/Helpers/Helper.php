@@ -20,7 +20,7 @@ class Helper
     {
         if ($state == 'reserve') {
             echo "tdreserve";
-        } else if ($state == 'leaving') {
+        } else if ($state == 'leaving' || $state == 'nightly') {
             echo "tdleaving";
         } else {
             echo "";

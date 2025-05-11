@@ -34,7 +34,7 @@
                                  }
                              }
                          @endphp
-                         @if ($resident['sarrsed'] <= 0 && ($resident['state'] == 'active' || $resident['state'] == 'leaving'))
+                         @if ($resident['sarrsed'] <= 0 && ($resident['state'] == 'active' || $resident['state'] == 'leaving' || $resident['state'] == 'nightly'))
                              <tr>
                                  <td class="text-primary" style="font-size: 12px">{{ $counter }}</td>
                                  <td>{{ $resident['otagh_name'] }}</td>

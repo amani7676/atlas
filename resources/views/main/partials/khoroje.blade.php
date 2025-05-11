@@ -33,7 +33,7 @@
                             }
 
                         @endphp
-                        @if (isset($resident['state']) && $resident['state'] == 'leaving')
+                        @if (isset($resident['state']) && $resident['state'] == 'leaving' || $resident['state'] == 'nightly' )
                             <tr>
                                 <td class="text-primary" style="font-size: 12px">{{ $counter }}</td>
                                 <td>{{ $resident['otagh_name'] }}</td>

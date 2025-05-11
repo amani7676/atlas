@@ -56,7 +56,9 @@
                             </tr>
                         @else
                             <tr>
-                                <td colspan="5" class="text-center">اتاق خالی میباشد</td>
+                                <td colspan="3" class="text-center">اتاق خالی میباشد</td>
+                                <td>{{ explode('_', $takhts['takht_name'])[1] }}</td>
+                                <td>{{ $otaghs['otagh_name'] }}</td>
                             </tr>
                         @endif
                     @endforeach
