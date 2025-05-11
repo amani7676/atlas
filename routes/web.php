@@ -61,6 +61,8 @@ Route::get('/search-list-ends-resident', ShowListEndsResidents::class)->name('se
 Route::get('/search-list-resident', ShowListResidents::class)->name('search.showList');
 Route::get('/reservation', Reserve::class)->name('show.reservation');
 
+//excute pdf
+Route::get('/report-pdf-residents', [ResidentController::class,'reportPdf'])->name('report.pdf.residents');
 
 Route::get('/moving', TakhtOtagh::class)->name('moving.resident');
 
