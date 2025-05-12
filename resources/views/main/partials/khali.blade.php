@@ -6,9 +6,9 @@
                 <thead class="align-middle  table-secondary">
                     <tr>
                         <th>#</th>
-                         <th>اتاق</th>
-                         <th>شماره تخت </th>
-                         <th>کل</th>
+                        <th>اتاق</th>
+                        <th>کل</th>
+                        <th>شماره تخت</th>
                         <th></th>
                         <th>َاضافه کردن</th>
                     </tr>
@@ -20,14 +20,13 @@
                     @endphp
 
                     @foreach ($data as $vaheds)
-                        @php
-                            usort($vaheds['otaghs'], function ($a, $b) {
-                                return $b['otagh_total'] <=> $a['otagh_total'];
-                            });
-                        @endphp
                         @foreach ($vaheds['otaghs'] as $otaghs)
+                            @php
+                                usort($vaheds['otaghs'], function ($a, $b) {
+                                    return $a['otagh_name'] <=> $b['otagh_name'];
+                                });
+                            @endphp
                             @foreach ($otaghs['takhts'] as $takhts)
-
                                 @if ($takhts['state'] == 'empty' && $counter < 15)
                                     <tr>
                                         <td class="text-primary" style="font-size: 12px">{{ $counterd }}</td>

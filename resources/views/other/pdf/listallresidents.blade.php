@@ -49,8 +49,8 @@
                         @if (!is_null($takhts['resident']))
                             <tr>
                                 <td>{{ $takhts['resident']['full_name'] }}</td>
-                                <td>{{ $takhts['resident']['end_date'] }}</td>
                                 <td>{{ $takhts['resident']['phone'] }}</td>
+                                <td>{{ $takhts['resident']['end_date'] }}</td>
                                 <td>{{ explode('_', $takhts['takht_name'])[1] }}</td>
                                 <td>{{ $otaghs['otagh_name'] }}</td>
                             </tr>

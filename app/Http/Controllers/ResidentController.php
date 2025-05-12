@@ -25,12 +25,15 @@ class ResidentController extends Controller
 
     public function updateQuick(Request $request, Resident $resident)
     {
+        
         $rules = [
             'full_name' => 'required|string|min:1|max:255|', // نام نباید خالی یا فقط فاصله باشد
+             'end_date' => ['required', 'regex:/^14\d{2}\/(0?[1-9]|1[0-2])\/(0?[1-9]|[12][0-9]|3[01])$/']
         ];
         // پیامهای سفارشی خطا
         $messages = [
             'full_name.required' => 'نام الزامی است.',
+            'end_date.required' => 'تاریخ رو به درستی وارد نکردید'
         ];
 
         // اعتبارسنجی دادهها
@@ -123,7 +126,7 @@ class ResidentController extends Controller
             $takht->update([
                 'state' => 'reserve'
             ]);
-        }else if($request->state_collapse == 'nightly'){
+        } else if ($request->state_collapse == 'nightly') {
             $takht->update([
                 'state' => 'full'
             ]);
@@ -137,7 +140,11 @@ class ResidentController extends Controller
 
     public function AddResident(Request $request)
     {
-        $phone_add = str_replace("-","",$request->phone_add);
+        if (!preg_match('/^14\d{2}\/(0?[1-9]|1[0-2])\/(0?[1-9]|[12][0-9]|3[01])$/', $request->end_date_add)) {
+            notify()->error('تاریخ  رو به درستی وارد کنید!');
+            return redirect()->back();
+        }
+        $phone_add = str_replace("-", "", $request->phone_add);
 
         // بررسی وجود کاربر با نام یا تلفن یکسان
         $existingUser = Resident::where('full_name', $request->full_name_add)
@@ -203,7 +210,7 @@ class ResidentController extends Controller
             } else if ($request->state_add == 'reserve') {
                 $takht->state = 'reserve'; // مقدار جدید برای وضعیت
                 $takht->save();
-            }else if($request->state_add == 'nightly'){
+            } else if ($request->state_add == 'nightly') {
                 $takht->state = 'full'; // مقدار جدید برای وضعیت
                 $takht->save();
             }
@@ -288,9 +295,7 @@ class ResidentController extends Controller
             'tempDir' => storage_path('app/mpdf')
         ];
         $pdf = LaravelMpdf::loadView('other.pdf.listallresidents', ['data' => $data], [], $config);
-                // برای دانلود مستقیم
+        // برای دانلود مستقیم
         return $pdf->download('گزارش.pdf');
     }
-
-
 }
