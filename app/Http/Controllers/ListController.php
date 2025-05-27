@@ -15,7 +15,7 @@ class ListController extends Controller
     }
     public function index()
     {
-        $result = $this->dataAll->getAllData();
+        $result = $this->dataAll->getAllData('id', 'desc');
         $residents = $this->dataAll->getResidents($result);
         return view("list/list",  data: ['data' => $result, 'residents' => $residents]);
     }

@@ -38,11 +38,20 @@ class DataServices
         return $diffInDays;
     }
 
-    public function getAllData()
+    public function getAllData($sortBy = null, $direction = 'asc')
     {
+       
         $vaheds = Vahed::with([
             'otaghs.takhts.resident.infoResident'
-        ])->get();
+        ]);
+
+        // اگر ورودی سورت داده شده باشد
+        if ($sortBy) {
+            $vaheds = $vaheds->orderBy($sortBy, $direction);
+        }
+
+        $vaheds = $vaheds->get();
+
 
         $data = [];
         // dd(vars: $vaheds);
@@ -288,7 +297,7 @@ class DataServices
         $takht = Takht::with([
             'otagh.vahed',          // اتاق و واحدش
             'resident.infoResident', // ساکن و اطلاعاتش
-          
+
         ])->find($takhtId);
 
         return $takht;
