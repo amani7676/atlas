@@ -7,6 +7,7 @@
     <title>{{ $title ?? 'گزارش های ' }}</title>
     @yield('styles')
     @include('base.header')
+    
 </head>
 
 <body>
@@ -17,7 +18,7 @@
     </div>
     @yield('footer')
     @include('base.footer')
-   
+
     @stack('scripts')
 </body>
 

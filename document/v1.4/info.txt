@@ -1,0 +1,6 @@
+npm i
+
+install bootstrap
+
+use vite
+
