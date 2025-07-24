@@ -221,41 +221,7 @@ class DataServices
             ];
         })->toArray();
     }
-    // public function getResidentsByIds(array $residentIds)
-    // {
-    //     $residents = [];
-
-    //     // بگیریم همه ریزیدنت‌ها با روابط مربوط
-    //     $residentModels = Resident::with(['infoResident', 'descriptions'])
-    //         ->whereIn('id', $residentIds)
-    //         ->get();
-
-    //     foreach ($residentModels as $resident) {
-    //         $descriptions = $resident->descriptions->isNotEmpty()
-    //             ? $resident->descriptions->toArray()
-    //             : null;
-    //     }
-
-    //     foreach ($residentModels as $resident) {
-    //         $flattened = [
-    //             'resident_id' => $resident->id,
-    //             'full_name' => $resident->full_name,
-    //             'phone' => $resident->phone,
-    //             'start_date' => $resident->start_date,
-    //             'end_date' => $resident->end_date,
-    //             'descriptions' => $descriptions, // مثلا فقط متن دیسکریپشن‌ها
-    //             'sarrsed' => $this->getDaysDiffJalali($resident->end_date),
-    //         ];
-
-    //         if ($resident->infoResident) {
-    //             $flattened = array_merge($flattened, $resident->infoResident->toArray());
-    //         }
-
-    //         $residents[] = $flattened;
-    //     }
-
-    //     return $residents;
-    // }
+  
 
 
     public function getResidentsByIds(array $residentIds)

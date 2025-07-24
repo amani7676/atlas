@@ -17,6 +17,6 @@ class ListController extends Controller
     {
         $result = $this->dataAll->getAllData('id', 'desc');
         $residents = $this->dataAll->getResidents($result);
-        return view("list/list",  data: ['data' => $result, 'residents' => $residents]);
+        return view("list/list",  data: ['data' => $result, 'residents' => $residents]); 
     }
 }
