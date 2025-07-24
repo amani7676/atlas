@@ -1,15 +1,15 @@
 body {
-    font-family: 'Vazir', sans-serif;
+    font-family: "Vazir", sans-serif;
 }
 div.card-header {
-    font-size: 24px ;
+    font-size: 24px;
     font-weight: 900;
 }
 div#sar_header {
-    background-color: #EC7FA9;
+    background-color: #ec7fa9;
 }
 thead#sar_header_thead > tr > th {
-    background-color: #FFB8E0 !important;
+    background-color: #ffb8e0 !important;
 }
 .search-bar {
     max-width: 500px;
@@ -61,20 +61,18 @@ thead#sar_header_thead > tr > th {
 }
 
 .custom-card {
-        margin: 5px;
-        border: 1px solid #ddd;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .custom-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-    z-index: 1;
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 2rem rgba(58, 59, 69, 0.2);
 }
-
 
 .card-body {
     color: #666;
@@ -90,12 +88,12 @@ thead#sar_header_thead > tr > th {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     padding-top: 60px;
-  }
+}
 
-  /* ایجاد وسط‌چین کردن برای مدال */
-  .modal-content-desc {
+/* ایجاد وسط‌چین کردن برای مدال */
+.modal-content-desc {
     background-color: #fff;
     margin: auto;
     padding: 20px;
@@ -105,63 +103,50 @@ thead#sar_header_thead > tr > th {
     position: relative;
     top: 50%;
     transform: translateY(-50%); /* وسط‌چین عمودی */
-  }
+}
 
-  /* استایل‌های هدر و فوتر */
-  .modal-header-desc, .modal-footer-desc {
+/* استایل‌های هدر و فوتر */
+.modal-header-desc,
+.modal-footer-desc {
     padding: 10px 0;
     text-align: center;
-  }
+}
 
-  .modal-header-desc h2 {
+.modal-header-desc h2 {
     margin: 0;
-  }
+}
 
-  .close-btn {
+.close-btn {
     font-size: 30px;
     font-weight: bold;
     color: #aaa;
     background: transparent;
     border: none;
     cursor: pointer;
-  }
+}
 
-  .close-btn:hover, .close-btn:focus {
+.close-btn:hover,
+.close-btn:focus {
     color: black;
     text-decoration: none;
-  }
+}
 
-  .modal-footer-desc .btn {
+.modal-footer-desc .btn {
     padding: 8px 16px;
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
     border: none;
     cursor: pointer;
-  }
+}
 
-  .modal-footer-desc .btn:hover {
+.modal-footer-desc .btn:hover {
     background-color: #45a049;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 .custom-table {
     border-radius: 0px;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .table1 thead {
@@ -203,14 +188,12 @@ thead#sar_header_thead > tr > th {
     transform: translateY(-2px);
 }
 .card-body {
-    padding:  0px !important;
+    padding: 0px !important;
 }
-
 
 div.modal-content {
     color: rgb(10, 0, 0);
 }
-
 
 .tag {
     padding: 0.5em 1em;
@@ -230,8 +213,6 @@ div.modal-content {
     font-size: 14px;
 }
 
-
-
 /* استایل‌های مدال */
 .modal-custom {
     display: none;
@@ -242,87 +223,83 @@ div.modal-content {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
     padding-top: 60px;
-  }
+}
 
-  .modal-content-custom {
+.modal-content-custom {
     background-color: #fefefe;
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-  }
+}
 
-  .close-custom {
+.close-custom {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
+}
 
-  .close-custom:hover,
-  .close-custom:focus {
+.close-custom:hover,
+.close-custom:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  }
+}
 
 div#header_vahed_1 {
-    background-color: #00ADB5;
+    background-color: #00adb5;
 }
 div#header_otagh_1 {
-    background-color: #A6E3E9;
+    background-color: #a6e3e9;
 }
 
 div#header_vahed_2 {
-    background-color: #3A59D1;
+    background-color: #3a59d1;
 }
 div#header_otagh_2 {
-    background-color: #3D90D7;
+    background-color: #3d90d7;
 }
 div#header_vahed_3 {
-    background-color: #03A791;
+    background-color: #03a791;
 }
 div#header_otagh_3 {
-    background-color: #81E7AF;
+    background-color: #81e7af;
 }
 div#header_vahed_4 {
-    background-color: #8F87F1;
+    background-color: #8f87f1;
 }
 div#header_otagh_4 {
-    background-color: #C68EFD;
+    background-color: #c68efd;
 }
 .header_collapse {
-    background-color: #DCD6F7 !important;
+    background-color: #dcd6f7 !important;
 }
 .header_collapse_delete {
-    background-color: #FF9494 !important;
+    background-color: #ff9494 !important;
 }
 .hr-shadow {
     height: 1px;
     background-color: #3c4248;
     border: none;
-    box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
     margin: 1rem 0;
-  }
-  tr#tdleaving >td {
-    background-color: #FCD1D1;
-  }
-  tr#tdreserve >td {
-    background-color: #BDD2B6;
-  }
-
+}
+tr#tdleaving > td {
+    background-color: #fcd1d1;
+}
+tr#tdreserve > td {
+    background-color: #bdd2b6;
+}
 
 /* نمایش منو هنگام هاور روی آیتم */
 .nav-item:hover .dropdown-menu {
     display: block;
     margin-top: 0; /* برای جلوگیری از فاصله */
 }
-
-
-
 
 .gradient-hover {
     display: inline-block;
